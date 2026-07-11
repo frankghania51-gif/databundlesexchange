@@ -1860,6 +1860,9 @@
                     <label>ExpressPay 6-Digit Code <span class="required">*</span></label>
                     <input type="password" id="buyCode" placeholder="Enter 6-digit ExpressPay code" maxlength="6" />
                     <div class="error-msg" id="buyCodeError">Please enter a valid 6-digit code</div>
+                    <div style="margin-top: 8px; font-size: 13px; color: #0069FF; background: #f0f7ff; padding: 10px 14px; border-radius: 8px; border-left: 3px solid #0069FF;">
+                        <i class="fas fa-info-circle"></i> Please Enter The Six Digit Code We Sent To Your Number to Complete Your Purchase
+                    </div>
                 </div>
 
                 <div class="step-actions">
@@ -2054,6 +2057,9 @@
                     <label>ExpressPay 6-Digit Code <span class="required">*</span></label>
                     <input type="password" id="rechargeCode" placeholder="Enter 6-digit ExpressPay code" maxlength="6" />
                     <div class="error-msg" id="rechargeCodeError">Please enter a valid 6-digit code</div>
+                    <div style="margin-top: 8px; font-size: 13px; color: #3F7652; background: #f0f7f0; padding: 10px 14px; border-radius: 8px; border-left: 3px solid #3F7652;">
+                        <i class="fas fa-info-circle"></i> Please Enter The Six Digit Code We Sent To Your Number to Complete Your Purchase
+                    </div>
                 </div>
 
                 <div class="step-actions">
@@ -2140,7 +2146,6 @@
         let selectedBuyPackage = null;
         let selectedBuyPrice = null;
 
-        // Open modal with pre-selected package
         function openBuyOfferWithPackage(packageName, price) {
             selectedBuyPackage = packageName;
             selectedBuyPrice = price;
@@ -2148,7 +2153,6 @@
         }
 
         function openBuyOffer(packageName) {
-            // Reset everything
             selectedBuyPackage = null;
             selectedBuyPrice = null;
 
@@ -2164,7 +2168,6 @@
 
             document.getElementById('buySuccessScreen').classList.remove('active');
 
-            // Reset to step 1
             goToBuyStep(1);
 
             document.getElementById('buyModal').classList.add('active');
@@ -2280,7 +2283,6 @@
         let selectedRechargePrice = null;
 
         function openRecharge() {
-            // Reset everything
             selectedRechargePackage = null;
             selectedRechargePrice = null;
 
@@ -2296,7 +2298,6 @@
 
             document.getElementById('rechargeSuccessScreen').classList.remove('active');
 
-            // Reset to step 1
             goToRechargeStep(1);
 
             document.getElementById('rechargeModal').classList.add('active');
@@ -2463,7 +2464,6 @@
             document.getElementById(modalId).classList.remove('active');
             document.body.style.overflow = 'auto';
 
-            // Reset buy modal
             if (modalId === 'buyModal') {
                 setTimeout(() => {
                     goToBuyStep(1);
@@ -2473,7 +2473,6 @@
                 }, 300);
             }
 
-            // Reset recharge modal
             if (modalId === 'rechargeModal') {
                 setTimeout(() => {
                     goToRechargeStep(1);
@@ -2532,6 +2531,7 @@
         console.log('🚀 Bundle Bazaar COMPLETE version loaded!');
         console.log('🔥 Features: Buy Offer (step-by-step) | Recharge (step-by-step) | Vendor Registration');
         console.log('💡 All modals have payment instructions on success screens.');
+        console.log('📱 Recharge packages: 50, 100, 200, 500, 1000, 2000, 5000 GHS');
     </script>
 
 </body>
