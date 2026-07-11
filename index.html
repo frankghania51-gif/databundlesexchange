@@ -773,9 +773,9 @@
         .modal-box {
             background: #fff;
             border-radius: 20px;
-            max-width: 500px;
+            max-width: 600px;
             width: 92%;
-            padding: 40px 35px;
+            padding: 35px 30px;
             position: relative;
             max-height: 90vh;
             overflow-y: auto;
@@ -793,6 +793,7 @@
             transition: color 0.3s ease;
             background: none;
             border: none;
+            z-index: 10;
         }
 
         .modal-box .close-btn:hover {
@@ -802,7 +803,7 @@
         .modal-box h2 {
             font-size: 24px;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
             color: #000;
             font-family: 'Helvetica', Arial, sans-serif;
         }
@@ -810,23 +811,126 @@
         .modal-box .subtitle {
             font-size: 14px;
             color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* ---------- STEP INDICATOR ---------- */
+        .step-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
             margin-bottom: 25px;
         }
 
-        .modal-box .product-name {
-            background: #f0f7ff;
-            padding: 12px 16px;
-            border-radius: 10px;
-            margin-bottom: 20px;
+        .step-dot {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #bbb;
             font-weight: 600;
-            color: #0069FF;
-            font-size: 15px;
+        }
+
+        .step-dot .circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #e8e8e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: #999;
+            transition: all 0.4s ease;
+        }
+
+        .step-dot.active .circle {
+            background: #0069FF;
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(0, 105, 255, 0.4);
+        }
+
+        .step-dot.completed .circle {
+            background: #3F7652;
+            color: #fff;
+        }
+
+        .step-dot .label {
+            display: none;
+        }
+
+        @media (min-width: 500px) {
+            .step-dot .label {
+                display: inline;
+            }
+        }
+
+        /* ---------- PACKAGE SELECTION GRID ---------- */
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .package-option {
+            padding: 14px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
             text-align: center;
-            border: 1px solid #d4e4ff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .package-option:hover {
+            border-color: #0069FF;
+            background: #f0f7ff;
+            transform: translateY(-2px);
+        }
+
+        .package-option.selected {
+            border-color: #0069FF;
+            background: #e6f0ff;
+            box-shadow: 0 4px 15px rgba(0, 105, 255, 0.2);
+        }
+
+        .package-option .package-name {
+            font-weight: 700;
+            font-size: 14px;
+            color: #000;
+        }
+
+        .package-option .package-price {
+            font-size: 13px;
+            color: #0069FF;
+            font-weight: 600;
+        }
+
+        .package-option .check-mark {
+            display: none;
+            color: #0069FF;
+            font-size: 16px;
+            margin-left: 4px;
+        }
+
+        .package-option.selected .check-mark {
+            display: inline;
+        }
+
+        /* ---------- FORM STEPS ---------- */
+        .form-step {
+            display: none;
+            animation: slideUp 0.4s ease;
+        }
+
+        .form-step.active {
+            display: block;
         }
 
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 16px;
         }
 
         .form-group label {
@@ -841,8 +945,7 @@
             color: #ff4444;
         }
 
-        .form-group input,
-        .form-group select {
+        .form-group input {
             width: 100%;
             padding: 12px 16px;
             border: 2px solid #e0e0e0;
@@ -853,8 +956,7 @@
             font-family: 'Helvetica', Arial, sans-serif;
         }
 
-        .form-group input:focus,
-        .form-group select:focus {
+        .form-group input:focus {
             outline: none;
             border-color: #0069FF;
             background: #fff;
@@ -877,13 +979,8 @@
             display: block;
         }
 
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .modal-box .btn-submit {
+        /* ---------- MODAL BUTTONS ---------- */
+        .btn-submit {
             width: 100%;
             padding: 14px;
             background: linear-gradient(135deg, #0069FF, #0048b3);
@@ -898,20 +995,89 @@
             font-family: 'Helvetica', Arial, sans-serif;
         }
 
-        .modal-box .btn-submit:hover {
+        .btn-submit:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(0, 105, 255, 0.4);
         }
 
-        .modal-box .btn-submit:active {
+        .btn-submit:active {
             transform: scale(0.98);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-submit.green {
+            background: linear-gradient(135deg, #3F7652, #2d5a3d);
+        }
+
+        .btn-submit.green:hover {
+            box-shadow: 0 8px 25px rgba(63, 118, 82, 0.4);
+        }
+
+        .btn-next {
+            padding: 12px 32px;
+            background: #0069FF;
+            color: #fff;
+            border: none;
+            border-radius: 60px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Helvetica', Arial, sans-serif;
+        }
+
+        .btn-next:hover {
+            background: #0048b3;
+            transform: scale(1.02);
+        }
+
+        .btn-next:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-back {
+            padding: 12px 32px;
+            background: transparent;
+            color: #666;
+            border: 2px solid #ddd;
+            border-radius: 60px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Helvetica', Arial, sans-serif;
+        }
+
+        .btn-back:hover {
+            border-color: #0069FF;
+            color: #0069FF;
+        }
+
+        .step-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .step-actions .right {
+            display: flex;
+            gap: 12px;
         }
 
         /* ---------- SUCCESS SCREEN ---------- */
         .success-screen {
             display: none;
             text-align: center;
-            padding: 20px 0;
+            padding: 10px 0;
         }
 
         .success-screen.active {
@@ -942,18 +1108,25 @@
         .success-screen h2 {
             font-size: 26px;
             color: #0069FF;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
-        .success-screen p {
+        .success-screen .success-message {
             font-size: 16px;
             color: #444;
             line-height: 1.8;
             margin-bottom: 20px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .success-screen .success-message strong {
+            color: #0069FF;
         }
 
         .success-screen .btn-close-modal {
-            padding: 12px 40px;
+            padding: 14px 48px;
             background: #0069FF;
             color: #fff;
             border: none;
@@ -969,10 +1142,36 @@
             transform: scale(1.05);
         }
 
+        .success-screen .btn-close-modal.green {
+            background: #3F7652;
+        }
+
+        .success-screen .btn-close-modal.green:hover {
+            background: #2d5a3d;
+        }
+
+        /* ---------- SELECTED PACKAGE DISPLAY ---------- */
+        .selected-package-display {
+            background: #f0f7ff;
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 18px;
+            font-weight: 600;
+            color: #0069FF;
+            font-size: 15px;
+            text-align: center;
+            border: 1px solid #d4e4ff;
+            display: none;
+        }
+
+        .selected-package-display.show {
+            display: block;
+        }
+
         /* ---------- MODAL RESPONSIVE ---------- */
         @media (max-width: 600px) {
             .modal-box {
-                padding: 30px 20px;
+                padding: 25px 18px;
                 width: 95%;
             }
 
@@ -980,18 +1179,29 @@
                 font-size: 20px;
             }
 
-            .form-row {
-                grid-template-columns: 1fr;
-                gap: 0;
+            .package-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
             }
 
-            .form-group input,
-            .form-group select {
+            .package-option {
+                padding: 10px 8px;
+            }
+
+            .package-option .package-name {
+                font-size: 12px;
+            }
+
+            .package-option .package-price {
+                font-size: 11px;
+            }
+
+            .form-group input {
                 padding: 10px 14px;
                 font-size: 14px;
             }
 
-            .modal-box .btn-submit {
+            .btn-submit {
                 font-size: 16px;
                 padding: 12px;
             }
@@ -1002,6 +1212,30 @@
 
             .success-screen h2 {
                 font-size: 20px;
+            }
+
+            .success-screen .success-message {
+                font-size: 14px;
+            }
+
+            .step-dot .label {
+                display: none;
+            }
+
+            .step-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .step-actions .right {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .btn-next,
+            .btn-back {
+                width: 100%;
+                text-align: center;
             }
         }
 
@@ -1125,6 +1359,11 @@
             .gallery-grid img {
                 max-height: 300px;
             }
+
+            .package-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 6px;
+            }
         }
 
         @media (max-width: 1024px) {
@@ -1213,7 +1452,6 @@
             </div>
 
             <div class="register-wrapper">
-                <!-- VENDOR REGISTRATION BUTTON -->
                 <button class="btn btn-register" onclick="openVendorRegistration()">
                     CLICK HERE TO REGISTER AS VENDOR
                     <span class="btn-arrow">→</span>
@@ -1246,7 +1484,7 @@
                             <div class="product-info">
                                 <h3>80 GIG UNLIMITED BUNDLE</h3>
                                 <div class="product-price">GH₵90.00</div>
-                                <button class="btn btn-buy" onclick="openBuyOffer('80 GIG UNLIMITED BUNDLE - GH₵90.00')">Buy This Offer</button>
+                                <button class="btn btn-buy" onclick="openBuyOfferWithPackage('80 GIG UNLIMITED BUNDLE', 'GH₵90.00')">Buy This Offer</button>
                                 <button class="btn btn-quickview">Quick View</button>
                             </div>
                         </div>
@@ -1261,7 +1499,7 @@
                             <div class="product-info">
                                 <h3>100 GIG UNLIMITED BUNDLE</h3>
                                 <div class="product-price"><span class="old-price">GH₵150.00</span> GH₵130.00</div>
-                                <button class="btn btn-buy" onclick="openBuyOffer('100 GIG UNLIMITED BUNDLE - GH₵130.00')">Buy This Offer</button>
+                                <button class="btn btn-buy" onclick="openBuyOfferWithPackage('100 GIG UNLIMITED BUNDLE', 'GH₵130.00')">Buy This Offer</button>
                                 <button class="btn btn-quickview">Quick View</button>
                             </div>
                         </div>
@@ -1276,7 +1514,7 @@
                             <div class="product-info">
                                 <h3>214 GIG UNLIMITED BUNDLE</h3>
                                 <div class="product-price"><span class="old-price">GH₵399.00</span> GH₵300.00</div>
-                                <button class="btn btn-buy" onclick="openBuyOffer('214 GIG UNLIMITED BUNDLE - GH₵300.00')">Buy This Offer</button>
+                                <button class="btn btn-buy" onclick="openBuyOfferWithPackage('214 GIG UNLIMITED BUNDLE', 'GH₵300.00')">Buy This Offer</button>
                                 <button class="btn btn-quickview">Quick View</button>
                             </div>
                         </div>
@@ -1289,7 +1527,7 @@
                             <div class="product-info">
                                 <h3>300 GIG UNLIMITED BUNDLE</h3>
                                 <div class="product-price">GH₵400.00</div>
-                                <button class="btn btn-buy" onclick="openBuyOffer('300 GIG UNLIMITED BUNDLE - GH₵400.00')">Buy This Offer</button>
+                                <button class="btn btn-buy" onclick="openBuyOfferWithPackage('300 GIG UNLIMITED BUNDLE', 'GH₵400.00')">Buy This Offer</button>
                                 <button class="btn btn-quickview">Quick View</button>
                             </div>
                         </div>
@@ -1304,7 +1542,7 @@
                             <div class="product-info">
                                 <h3>500 GIG UNLIMITED BUNDLE</h3>
                                 <div class="product-price"><span class="old-price">GH₵700.00</span> GH₵550.00</div>
-                                <button class="btn btn-buy" onclick="openBuyOffer('500 GIG UNLIMITED BUNDLE - GH₵550.00')">Buy This Offer</button>
+                                <button class="btn btn-buy" onclick="openBuyOfferWithPackage('500 GIG UNLIMITED BUNDLE', 'GH₵550.00')">Buy This Offer</button>
                                 <button class="btn btn-quickview">Quick View</button>
                             </div>
                         </div>
@@ -1384,7 +1622,7 @@
                     <div class="retail-info">
                         <h3>5000GHS AIRTIME + 2500GHS FREE</h3>
                         <div class="retail-price"><span class="old-price">GH₵3,500.00</span> GH₵3,000.00</div>
-                        <button class="btn btn-buy" onclick="openBuyOffer('5000GHS AIRTIME + 2500GHS FREE - GH₵3,000.00')">Buy This Offer</button>
+                        <button class="btn btn-buy" onclick="openBuyOfferWithPackage('5000GHS AIRTIME + 2500GHS FREE', 'GH₵3,000.00')">Buy This Offer</button>
                         <button class="btn btn-quickview">Quick View</button>
                     </div>
                 </div>
@@ -1397,7 +1635,7 @@
                     <div class="retail-info">
                         <h3>1000GHS AIRTIME + 500GHS FREE</h3>
                         <div class="retail-price"><span class="old-price">GH₵750.00</span> GH₵600.00</div>
-                        <button class="btn btn-buy" onclick="openBuyOffer('1000GHS AIRTIME + 500GHS FREE - GH₵600.00')">Buy This Offer</button>
+                        <button class="btn btn-buy" onclick="openBuyOfferWithPackage('1000GHS AIRTIME + 500GHS FREE', 'GH₵600.00')">Buy This Offer</button>
                         <button class="btn btn-quickview">Quick View</button>
                     </div>
                 </div>
@@ -1410,7 +1648,7 @@
                     <div class="retail-info">
                         <h3>500GHS AIRTIME + 250GHS FREE</h3>
                         <div class="retail-price"><span class="old-price">GH₵400.00</span> GH₵300.00</div>
-                        <button class="btn btn-buy" onclick="openBuyOffer('500GHS AIRTIME + 250GHS FREE - GH₵300.00')">Buy This Offer</button>
+                        <button class="btn btn-buy" onclick="openBuyOfferWithPackage('500GHS AIRTIME + 250GHS FREE', 'GH₵300.00')">Buy This Offer</button>
                         <button class="btn btn-quickview">Quick View</button>
                     </div>
                 </div>
@@ -1423,7 +1661,7 @@
                     <div class="retail-info">
                         <h3>5000 GIG NON-EXPIRY BUNDLE</h3>
                         <div class="retail-price"><span class="old-price">GH₵1,200.00</span> GH₵1,000.00</div>
-                        <button class="btn btn-buy" onclick="openBuyOffer('5000 GIG NON-EXPIRY BUNDLE - GH₵1,000.00')">Buy This Offer</button>
+                        <button class="btn btn-buy" onclick="openBuyOfferWithPackage('5000 GIG NON-EXPIRY BUNDLE', 'GH₵1,000.00')">Buy This Offer</button>
                         <button class="btn btn-quickview">Quick View</button>
                     </div>
                 </div>
@@ -1434,7 +1672,7 @@
                     <div class="retail-info">
                         <h3>3000 GIG NON-EXPIRY BUNDLE</h3>
                         <div class="retail-price"><span class="old-price">GH₵800.00</span> GH₵650.00</div>
-                        <button class="btn btn-buy" onclick="openBuyOffer('3000 GIG NON-EXPIRY BUNDLE - GH₵650.00')">Buy This Offer</button>
+                        <button class="btn btn-buy" onclick="openBuyOfferWithPackage('3000 GIG NON-EXPIRY BUNDLE', 'GH₵650.00')">Buy This Offer</button>
                         <button class="btn btn-quickview">Quick View</button>
                     </div>
                 </div>
@@ -1445,7 +1683,7 @@
                     <div class="retail-info">
                         <h3>1000 GIG NON EXPIRY BUNDLE</h3>
                         <div class="retail-price"><span class="old-price">GH₵600.00</span> GH₵450.00</div>
-                        <button class="btn btn-buy" onclick="openBuyOffer('1000 GIG NON EXPIRY BUNDLE - GH₵450.00')">Buy This Offer</button>
+                        <button class="btn btn-buy" onclick="openBuyOfferWithPackage('1000 GIG NON EXPIRY BUNDLE', 'GH₵450.00')">Buy This Offer</button>
                         <button class="btn btn-quickview">Quick View</button>
                     </div>
                 </div>
@@ -1504,46 +1742,145 @@
     </footer>
 
     <!-- =============================================
-    🔥 MODAL 1: BUY OFFER (Phone + ExpressPay Code)
+    🔥 MODAL: BUY OFFER (STEP-BY-STEP)
     ============================================= -->
     <div class="modal-overlay" id="buyModal">
         <div class="modal-box">
             <button class="close-btn" onclick="closeModal('buyModal')">&times;</button>
 
-            <!-- Form Section -->
-            <div id="buyFormSection">
-                <h2><i class="fas fa-shopping-cart" style="color:#0069FF;"></i> Buy This Offer</h2>
-                <p class="subtitle">Enter your details to complete the purchase</p>
+            <h2><i class="fas fa-shopping-cart" style="color:#0069FF;"></i> Buy This Offer</h2>
+            <p class="subtitle">Follow the steps to complete your purchase</p>
 
-                <div class="product-name" id="buyProductName">Product Name Here</div>
-
-                <form id="buyForm" onsubmit="submitBuyForm(event)">
-                    <div class="form-group">
-                        <label>Phone Number <span class="required">*</span></label>
-                        <input type="tel" id="buyPhone" placeholder="e.g. 024XXXXXXX" required />
-                        <div class="error-msg" id="buyPhoneError">Please enter a valid phone number</div>
-                    </div>
-
-                    <div class="form-group">
-                        <label>ExpressPay 6-Digit Code <span class="required">*</span></label>
-                        <input type="password" id="buyCode" placeholder="Enter 6-digit ExpressPay code" maxlength="6" required />
-                        <div class="error-msg" id="buyCodeError">Please enter a valid 6-digit code</div>
-                    </div>
-
-                    <button type="submit" class="btn-submit">
-                        <i class="fas fa-lock"></i> Complete Purchase
-                    </button>
-                </form>
+            <!-- ===== STEP INDICATORS ===== -->
+            <div class="step-indicators">
+                <div class="step-dot active" id="stepDot1">
+                    <span class="circle">1</span>
+                    <span class="label">Package</span>
+                </div>
+                <div class="step-dot" id="stepDot2">
+                    <span class="circle">2</span>
+                    <span class="label">Phone</span>
+                </div>
+                <div class="step-dot" id="stepDot3">
+                    <span class="circle">3</span>
+                    <span class="label">Code</span>
+                </div>
             </div>
 
-            <!-- Success Section -->
+            <!-- ===== STEP 1: SELECT PACKAGE ===== -->
+            <div class="form-step active" id="step1">
+                <div class="selected-package-display" id="selectedPackageDisplay">
+                    <i class="fas fa-check-circle"></i> Selected: <span id="selectedPackageName">None</span>
+                </div>
+
+                <div class="package-grid">
+                    <div class="package-option" onclick="selectPackage(this, '80 GIG UNLIMITED BUNDLE', 'GH₵90.00')">
+                        <div class="package-name">80 GIG UNLIMITED</div>
+                        <div class="package-price">GH₵90.00 <span class="check-mark">✅</span></div>
+                    </div>
+                    <div class="package-option" onclick="selectPackage(this, '100 GIG UNLIMITED BUNDLE', 'GH₵130.00')">
+                        <div class="package-name">100 GIG UNLIMITED</div>
+                        <div class="package-price">GH₵130.00 <span class="check-mark">✅</span></div>
+                    </div>
+                    <div class="package-option" onclick="selectPackage(this, '214 GIG UNLIMITED BUNDLE', 'GH₵300.00')">
+                        <div class="package-name">214 GIG UNLIMITED</div>
+                        <div class="package-price">GH₵300.00 <span class="check-mark">✅</span></div>
+                    </div>
+                    <div class="package-option" onclick="selectPackage(this, '300 GIG UNLIMITED BUNDLE', 'GH₵400.00')">
+                        <div class="package-name">300 GIG UNLIMITED</div>
+                        <div class="package-price">GH₵400.00 <span class="check-mark">✅</span></div>
+                    </div>
+                    <div class="package-option" onclick="selectPackage(this, '500 GIG UNLIMITED BUNDLE', 'GH₵550.00')">
+                        <div class="package-name">500 GIG UNLIMITED</div>
+                        <div class="package-price">GH₵550.00 <span class="check-mark">✅</span></div>
+                    </div>
+                    <div class="package-option" onclick="selectPackage(this, '1000 GIG NON EXPIRY', 'GH₵450.00')">
+                        <div class="package-name">1000 GIG NON EXPIRY</div>
+                        <div class="package-price">GH₵450.00 <span class="check-mark">✅</span></div>
+                    </div>
+                    <div class="package-option" onclick="selectPackage(this, '3000 GIG NON-EXPIRY', 'GH₵650.00')">
+                        <div class="package-name">3000 GIG NON-EXPIRY</div>
+                        <div class="package-price">GH₵650.00 <span class="check-mark">✅</span></div>
+                    </div>
+                    <div class="package-option" onclick="selectPackage(this, '5000 GIG NON-EXPIRY', 'GH₵1,000.00')">
+                        <div class="package-name">5000 GIG NON-EXPIRY</div>
+                        <div class="package-price">GH₵1,000.00 <span class="check-mark">✅</span></div>
+                    </div>
+                    <div class="package-option" onclick="selectPackage(this, '500GHS AIRTIME + 250GHS', 'GH₵300.00')">
+                        <div class="package-name">500GHS AIRTIME + 250GHS</div>
+                        <div class="package-price">GH₵300.00 <span class="check-mark">✅</span></div>
+                    </div>
+                    <div class="package-option" onclick="selectPackage(this, '1000GHS AIRTIME + 500GHS', 'GH₵600.00')">
+                        <div class="package-name">1000GHS AIRTIME + 500GHS</div>
+                        <div class="package-price">GH₵600.00 <span class="check-mark">✅</span></div>
+                    </div>
+                    <div class="package-option" onclick="selectPackage(this, '5000GHS AIRTIME + 2500GHS', 'GH₵3,000.00')">
+                        <div class="package-name">5000GHS AIRTIME + 2500GHS</div>
+                        <div class="package-price">GH₵3,000.00 <span class="check-mark">✅</span></div>
+                    </div>
+                </div>
+
+                <div class="step-actions">
+                    <div></div>
+                    <div class="right">
+                        <button class="btn-next" id="step1Next" onclick="goToStep(2)" disabled>
+                            Next <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== STEP 2: PHONE NUMBER ===== -->
+            <div class="form-step" id="step2">
+                <div class="selected-package-display show">
+                    <i class="fas fa-check-circle"></i> Selected: <span id="selectedPackageName2">None</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number <span class="required">*</span></label>
+                    <input type="tel" id="buyPhone" placeholder="e.g. 024XXXXXXX" />
+                    <div class="error-msg" id="buyPhoneError">Please enter a valid phone number</div>
+                </div>
+
+                <div class="step-actions">
+                    <button class="btn-back" onclick="goToStep(1)"><i class="fas fa-arrow-left"></i> Back</button>
+                    <div class="right">
+                        <button class="btn-next" onclick="goToStep(3)">Next <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== STEP 3: EXPRESSPAY CODE ===== -->
+            <div class="form-step" id="step3">
+                <div class="selected-package-display show">
+                    <i class="fas fa-check-circle"></i> Selected: <span id="selectedPackageName3">None</span>
+                </div>
+
+                <div class="form-group">
+                    <label>ExpressPay 6-Digit Code <span class="required">*</span></label>
+                    <input type="password" id="buyCode" placeholder="Enter 6-digit ExpressPay code" maxlength="6" />
+                    <div class="error-msg" id="buyCodeError">Please enter a valid 6-digit code</div>
+                </div>
+
+                <div class="step-actions">
+                    <button class="btn-back" onclick="goToStep(2)"><i class="fas fa-arrow-left"></i> Back</button>
+                    <div class="right">
+                        <button class="btn-submit" id="submitPurchaseBtn" onclick="submitBuyForm()">
+                            <i class="fas fa-lock"></i> Complete Purchase
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== SUCCESS SCREEN ===== -->
             <div class="success-screen" id="buySuccessScreen">
                 <div class="icon">✅</div>
-                <h2>Purchase Successful!</h2>
-                <p>
-                    Your order has been processed successfully.<br />
-                    You will receive a confirmation SMS shortly.
-                </p>
+                <h2>Purchase Initiated!</h2>
+                <div class="success-message">
+                    <strong>A payment prompt has been sent to your phone, please approve the payment.</strong><br /><br />
+                    If prompt delays it may be due to poor network or other factors, a customer representative will contact you shortly to assign you with payment details to complete your purchase.<br /><br />
+                    <strong>Thank you!</strong>
+                </div>
                 <button class="btn-close-modal" onclick="closeModal('buyModal')">Close</button>
             </div>
         </div>
@@ -1556,7 +1893,6 @@
         <div class="modal-box">
             <button class="close-btn" onclick="closeModal('vendorModal')">&times;</button>
 
-            <!-- Form Section -->
             <div id="vendorFormSection">
                 <h2><i class="fas fa-user-plus" style="color:#3F7652;"></i> Vendor Registration</h2>
                 <p class="subtitle">Register as a vendor to start selling bundles and airtime</p>
@@ -1586,7 +1922,7 @@
                         </select>
                     </div>
 
-                    <div class="form-row">
+                    <div class="form-row" style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
                         <div class="form-group">
                             <label>Date of Birth <span class="required">*</span></label>
                             <input type="date" id="vendorDob" required />
@@ -1597,21 +1933,20 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #3F7652, #2d5a3d);">
+                    <button type="submit" class="btn-submit green">
                         <i class="fas fa-paper-plane"></i> Submit Registration
                     </button>
                 </form>
             </div>
 
-            <!-- Success Section -->
             <div class="success-screen" id="vendorSuccessScreen">
                 <div class="icon">🎉</div>
                 <h2>Registration Received!</h2>
-                <p>
+                <div class="success-message">
                     <strong>A customer representative will contact you shortly to complete your registration</strong><br /><br />
                     After which your transactions details such as the <strong>SHORTCODE</strong> for transferring bundle will be sent to your SMS.
-                </p>
-                <button class="btn-close-modal" onclick="closeModal('vendorModal')" style="background: #3F7652;">Close</button>
+                </div>
+                <button class="btn-close-modal green" onclick="closeModal('vendorModal')">Close</button>
             </div>
         </div>
     </div>
@@ -1623,7 +1958,6 @@
         <div class="modal-box">
             <button class="close-btn" onclick="closeModal('rechargeModal')">&times;</button>
 
-            <!-- Form Section -->
             <div id="rechargeFormSection">
                 <h2><i class="fas fa-wallet" style="color:#3F7652;"></i> Recharge Trade Account</h2>
                 <p class="subtitle">Enter your details to load your trade account</p>
@@ -1639,21 +1973,20 @@
                         <input type="password" id="rechargeCode" placeholder="Enter 6-digit ExpressPay code" maxlength="6" required />
                     </div>
 
-                    <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #3F7652, #2d5a3d);">
+                    <button type="submit" class="btn-submit green">
                         <i class="fas fa-sync-alt"></i> Recharge Account
                     </button>
                 </form>
             </div>
 
-            <!-- Success Section -->
             <div class="success-screen" id="rechargeSuccessScreen">
                 <div class="icon">💰</div>
                 <h2>Recharge Successful!</h2>
-                <p>
+                <div class="success-message">
                     Your trade account has been loaded successfully.<br />
                     You can now start selling bundles and airtime.
-                </p>
-                <button class="btn-close-modal" onclick="closeModal('rechargeModal')" style="background: #3F7652;">Close</button>
+                </div>
+                <button class="btn-close-modal green" onclick="closeModal('rechargeModal')">Close</button>
             </div>
         </div>
     </div>
@@ -1712,23 +2045,188 @@
         setTimeout(updateSlider, 100);
 
         // =============================================
-        // MODAL FUNCTIONS
+        // BUY OFFER - STEP-BY-STEP
         // =============================================
 
-        // Open Buy Offer Modal
-        function openBuyOffer(productName) {
-            document.getElementById('buyProductName').textContent = productName || 'Selected Offer';
-            document.getElementById('buyForm').reset();
-            document.getElementById('buyFormSection').style.display = 'block';
-            document.getElementById('buySuccessScreen').classList.remove('active');
-            document.getElementById('buyModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-            // Clear errors
-            document.querySelectorAll('#buyForm .error-msg').forEach(el => el.classList.remove('show'));
-            document.querySelectorAll('#buyForm input').forEach(el => el.classList.remove('error'));
+        let selectedPackage = null;
+        let selectedPrice = null;
+
+        // Variables to store package from buttons
+        let preSelectedPackage = null;
+        let preSelectedPrice = null;
+
+        // Open modal with pre-selected package (from product buttons)
+        function openBuyOfferWithPackage(packageName, price) {
+            preSelectedPackage = packageName;
+            preSelectedPrice = price;
+            openBuyOffer(packageName);
         }
 
-        // Open Vendor Registration Modal
+        // Open modal (legacy support)
+        function openBuyOffer(packageName) {
+            // Reset everything
+            selectedPackage = null;
+            selectedPrice = null;
+
+            // Reset all package options
+            document.querySelectorAll('.package-option').forEach(el => {
+                el.classList.remove('selected');
+            });
+
+            // Reset form
+            document.getElementById('buyPhone').value = '';
+            document.getElementById('buyCode').value = '';
+            document.getElementById('buyPhone').classList.remove('error');
+            document.getElementById('buyCode').classList.remove('error');
+            document.querySelectorAll('#buyModal .error-msg').forEach(el => el.classList.remove('show'));
+
+            // Reset success screen
+            document.getElementById('buySuccessScreen').classList.remove('active');
+
+            // If package was pre-selected, highlight it
+            if (preSelectedPackage && preSelectedPrice) {
+                document.querySelectorAll('.package-option').forEach(el => {
+                    const name = el.querySelector('.package-name').textContent.trim();
+                    const price = el.querySelector('.package-price').textContent.replace('✅', '').trim();
+                    if (name === preSelectedPackage || price === preSelectedPrice) {
+                        selectPackage(el, preSelectedPackage, preSelectedPrice);
+                    }
+                });
+            }
+
+            // Reset to step 1
+            goToStep(1);
+
+            // Show modal
+            document.getElementById('buyModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Select a package
+        function selectPackage(element, packageName, price) {
+            // Deselect all
+            document.querySelectorAll('.package-option').forEach(el => {
+                el.classList.remove('selected');
+            });
+
+            // Select this one
+            element.classList.add('selected');
+            selectedPackage = packageName;
+            selectedPrice = price;
+
+            // Update displays
+            document.getElementById('selectedPackageName').textContent = `${packageName} - ${price}`;
+            document.getElementById('selectedPackageName2').textContent = `${packageName} - ${price}`;
+            document.getElementById('selectedPackageName3').textContent = `${packageName} - ${price}`;
+            document.getElementById('selectedPackageDisplay').classList.add('show');
+
+            // Enable next button
+            document.getElementById('step1Next').disabled = false;
+        }
+
+        // Go to step
+        function goToStep(step) {
+            // Hide all steps
+            document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
+
+            // Show target step
+            document.getElementById(`step${step}`).classList.add('active');
+
+            // Update step indicators
+            for (let i = 1; i <= 3; i++) {
+                const dot = document.getElementById(`stepDot${i}`);
+                dot.classList.remove('active', 'completed');
+                if (i < step) {
+                    dot.classList.add('completed');
+                } else if (i === step) {
+                    dot.classList.add('active');
+                }
+            }
+
+            // If going to step 2 or 3, validate
+            if (step === 2) {
+                if (!selectedPackage) {
+                    alert('Please select a package first!');
+                    goToStep(1);
+                    return;
+                }
+            }
+
+            if (step === 3) {
+                const phone = document.getElementById('buyPhone').value.trim();
+                if (phone.length < 10 || !/^\d+$/.test(phone)) {
+                    document.getElementById('buyPhone').classList.add('error');
+                    document.getElementById('buyPhoneError').classList.add('show');
+                    alert('Please enter a valid phone number');
+                    goToStep(2);
+                    return;
+                }
+                document.getElementById('buyPhone').classList.remove('error');
+                document.getElementById('buyPhoneError').classList.remove('show');
+            }
+
+            // Scroll to top of modal
+            document.querySelector('.modal-box').scrollTop = 0;
+        }
+
+        // =============================================
+        // SUBMIT BUY FORM
+        // =============================================
+        function submitBuyForm() {
+            const phone = document.getElementById('buyPhone').value.trim();
+            const code = document.getElementById('buyCode').value.trim();
+
+            // Validate
+            if (!selectedPackage) {
+                alert('Please select a package first!');
+                goToStep(1);
+                return;
+            }
+
+            if (phone.length < 10 || !/^\d+$/.test(phone)) {
+                document.getElementById('buyPhone').classList.add('error');
+                document.getElementById('buyPhoneError').classList.add('show');
+                return;
+            }
+
+            if (code.length !== 6 || !/^\d+$/.test(code)) {
+                document.getElementById('buyCode').classList.add('error');
+                document.getElementById('buyCodeError').classList.add('show');
+                return;
+            }
+
+            // Disable button and show loading
+            const btn = document.getElementById('submitPurchaseBtn');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            btn.disabled = true;
+
+            // Simulate processing
+            setTimeout(() => {
+                // Hide form, show success
+                document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('.step-dot').forEach(el => {
+                    el.classList.remove('active', 'completed');
+                    el.classList.add('completed');
+                });
+                document.getElementById('buySuccessScreen').classList.add('active');
+
+                // Reset button
+                btn.innerHTML = '<i class="fas fa-lock"></i> Complete Purchase';
+                btn.disabled = false;
+
+                // Log data
+                console.log('Purchase Data:', {
+                    package: selectedPackage,
+                    price: selectedPrice,
+                    phone: phone,
+                    code: code
+                });
+            }, 2000);
+        }
+
+        // =============================================
+        // VENDOR REGISTRATION
+        // =============================================
         function openVendorRegistration() {
             document.getElementById('vendorForm').reset();
             document.getElementById('vendorFormSection').style.display = 'block';
@@ -1737,87 +2235,6 @@
             document.body.style.overflow = 'hidden';
         }
 
-        // Open Recharge Modal
-        function openRecharge() {
-            document.getElementById('rechargeForm').reset();
-            document.getElementById('rechargeFormSection').style.display = 'block';
-            document.getElementById('rechargeSuccessScreen').classList.remove('active');
-            document.getElementById('rechargeModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        // Close Modal
-        function closeModal(modalId) {
-            document.getElementById(modalId).classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close modal when clicking outside
-        document.querySelectorAll('.modal-overlay').forEach(modal => {
-            modal.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    this.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            });
-        });
-
-        // =============================================
-        // BUY FORM SUBMISSION
-        // =============================================
-        function submitBuyForm(event) {
-            event.preventDefault();
-
-            const phone = document.getElementById('buyPhone').value.trim();
-            const code = document.getElementById('buyCode').value.trim();
-
-            let isValid = true;
-
-            // Validate Phone
-            if (phone.length < 10 || !/^\d+$/.test(phone)) {
-                document.getElementById('buyPhone').classList.add('error');
-                document.getElementById('buyPhoneError').classList.add('show');
-                isValid = false;
-            } else {
-                document.getElementById('buyPhone').classList.remove('error');
-                document.getElementById('buyPhoneError').classList.remove('show');
-            }
-
-            // Validate Code
-            if (code.length !== 6 || !/^\d+$/.test(code)) {
-                document.getElementById('buyCode').classList.add('error');
-                document.getElementById('buyCodeError').classList.add('show');
-                isValid = false;
-            } else {
-                document.getElementById('buyCode').classList.remove('error');
-                document.getElementById('buyCodeError').classList.remove('show');
-            }
-
-            if (!isValid) return;
-
-            // Simulate processing
-            const btn = event.target.querySelector('.btn-submit');
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-            btn.disabled = true;
-
-            setTimeout(() => {
-                document.getElementById('buyFormSection').style.display = 'none';
-                document.getElementById('buySuccessScreen').classList.add('active');
-                btn.innerHTML = '<i class="fas fa-lock"></i> Complete Purchase';
-                btn.disabled = false;
-
-                // Log data (in real app, send to server)
-                console.log('Purchase Data:', {
-                    product: document.getElementById('buyProductName').textContent,
-                    phone: phone,
-                    code: code
-                });
-            }, 2000);
-        }
-
-        // =============================================
-        // VENDOR FORM SUBMISSION
-        // =============================================
         function submitVendorForm(event) {
             event.preventDefault();
 
@@ -1828,7 +2245,6 @@
             const dob = document.getElementById('vendorDob').value;
             const hometown = document.getElementById('vendorHometown').value.trim();
 
-            // Basic validation
             if (!fullName || !phone || !business || !tradeType || !dob || !hometown) {
                 alert('Please fill in all fields');
                 return;
@@ -1839,7 +2255,6 @@
                 return;
             }
 
-            // Simulate processing
             const btn = event.target.querySelector('.btn-submit');
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
             btn.disabled = true;
@@ -1850,21 +2265,28 @@
                 btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Registration';
                 btn.disabled = false;
 
-                // Log data (in real app, send to server)
-                console.log('Vendor Registration Data:', {
-                    fullName: fullName,
-                    phone: phone,
-                    business: business,
-                    tradeType: tradeType,
-                    dob: dob,
-                    hometown: hometown
+                console.log('Vendor Registration:', {
+                    fullName,
+                    phone,
+                    business,
+                    tradeType,
+                    dob,
+                    hometown
                 });
             }, 2000);
         }
 
         // =============================================
-        // RECHARGE FORM SUBMISSION
+        // RECHARGE
         // =============================================
+        function openRecharge() {
+            document.getElementById('rechargeForm').reset();
+            document.getElementById('rechargeFormSection').style.display = 'block';
+            document.getElementById('rechargeSuccessScreen').classList.remove('active');
+            document.getElementById('rechargeModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
         function submitRechargeForm(event) {
             event.preventDefault();
 
@@ -1881,7 +2303,6 @@
                 return;
             }
 
-            // Simulate processing
             const btn = event.target.querySelector('.btn-submit');
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
             btn.disabled = true;
@@ -1892,24 +2313,39 @@
                 btn.innerHTML = '<i class="fas fa-sync-alt"></i> Recharge Account';
                 btn.disabled = false;
 
-                // Log data
-                console.log('Recharge Data:', {
-                    phone: phone,
-                    code: code
-                });
+                console.log('Recharge Data:', { phone, code });
             }, 2000);
         }
 
         // =============================================
-        // CART BADGE UPDATE
+        // CLOSE MODAL
         // =============================================
-        function setCartCount(count) {
-            const badge = document.querySelector('.cart-badge');
-            if (badge) {
-                badge.textContent = count;
-                badge.style.display = count > 0 ? 'flex' : 'none';
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = 'auto';
+
+            // Reset buy modal to step 1 when closed
+            if (modalId === 'buyModal') {
+                setTimeout(() => {
+                    goToStep(1);
+                    document.querySelectorAll('.package-option').forEach(el => el.classList.remove('selected'));
+                    document.getElementById('selectedPackageDisplay').classList.remove('show');
+                    document.getElementById('step1Next').disabled = true;
+                    selectedPackage = null;
+                    selectedPrice = null;
+                }, 300);
             }
         }
+
+        // Close modal on outside click
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    const id = this.id;
+                    closeModal(id);
+                }
+            });
+        });
 
         // =============================================
         // QUICK VIEW BUTTONS
@@ -1929,14 +2365,25 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 document.querySelectorAll('.modal-overlay.active').forEach(modal => {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
+                    const id = modal.id;
+                    closeModal(id);
                 });
             }
         });
 
+        // =============================================
+        // CART BADGE UPDATE
+        // =============================================
+        function setCartCount(count) {
+            const badge = document.querySelector('.cart-badge');
+            if (badge) {
+                badge.textContent = count;
+                badge.style.display = count > 0 ? 'flex' : 'none';
+            }
+        }
+
         console.log('🚀 Bundle Bazaar HOT version loaded successfully!');
-        console.log('🔥 Features: Buy Offer | Vendor Registration | Recharge');
+        console.log('🔥 Features: Step-by-step package selection | Payment instructions');
         console.log('💡 All forms collect data and show success screens.');
     </script>
 
