@@ -1742,7 +1742,7 @@
     </footer>
 
     <!-- =============================================
-    🔥 MODAL: BUY OFFER (STEP-BY-STEP)
+    🔥 MODAL 1: BUY OFFER (STEP-BY-STEP)
     ============================================= -->
     <div class="modal-overlay" id="buyModal">
         <div class="modal-box">
@@ -1753,68 +1753,68 @@
 
             <!-- ===== STEP INDICATORS ===== -->
             <div class="step-indicators">
-                <div class="step-dot active" id="stepDot1">
+                <div class="step-dot active" id="buyStepDot1">
                     <span class="circle">1</span>
                     <span class="label">Package</span>
                 </div>
-                <div class="step-dot" id="stepDot2">
+                <div class="step-dot" id="buyStepDot2">
                     <span class="circle">2</span>
                     <span class="label">Phone</span>
                 </div>
-                <div class="step-dot" id="stepDot3">
+                <div class="step-dot" id="buyStepDot3">
                     <span class="circle">3</span>
                     <span class="label">Code</span>
                 </div>
             </div>
 
             <!-- ===== STEP 1: SELECT PACKAGE ===== -->
-            <div class="form-step active" id="step1">
-                <div class="selected-package-display" id="selectedPackageDisplay">
-                    <i class="fas fa-check-circle"></i> Selected: <span id="selectedPackageName">None</span>
+            <div class="form-step active" id="buyStep1">
+                <div class="selected-package-display" id="buySelectedPackageDisplay">
+                    <i class="fas fa-check-circle"></i> Selected: <span id="buySelectedPackageName">None</span>
                 </div>
 
                 <div class="package-grid">
-                    <div class="package-option" onclick="selectPackage(this, '80 GIG UNLIMITED BUNDLE', 'GH₵90.00')">
+                    <div class="package-option" onclick="selectBuyPackage(this, '80 GIG UNLIMITED BUNDLE', 'GH₵90.00')">
                         <div class="package-name">80 GIG UNLIMITED</div>
                         <div class="package-price">GH₵90.00 <span class="check-mark">✅</span></div>
                     </div>
-                    <div class="package-option" onclick="selectPackage(this, '100 GIG UNLIMITED BUNDLE', 'GH₵130.00')">
+                    <div class="package-option" onclick="selectBuyPackage(this, '100 GIG UNLIMITED BUNDLE', 'GH₵130.00')">
                         <div class="package-name">100 GIG UNLIMITED</div>
                         <div class="package-price">GH₵130.00 <span class="check-mark">✅</span></div>
                     </div>
-                    <div class="package-option" onclick="selectPackage(this, '214 GIG UNLIMITED BUNDLE', 'GH₵300.00')">
+                    <div class="package-option" onclick="selectBuyPackage(this, '214 GIG UNLIMITED BUNDLE', 'GH₵300.00')">
                         <div class="package-name">214 GIG UNLIMITED</div>
                         <div class="package-price">GH₵300.00 <span class="check-mark">✅</span></div>
                     </div>
-                    <div class="package-option" onclick="selectPackage(this, '300 GIG UNLIMITED BUNDLE', 'GH₵400.00')">
+                    <div class="package-option" onclick="selectBuyPackage(this, '300 GIG UNLIMITED BUNDLE', 'GH₵400.00')">
                         <div class="package-name">300 GIG UNLIMITED</div>
                         <div class="package-price">GH₵400.00 <span class="check-mark">✅</span></div>
                     </div>
-                    <div class="package-option" onclick="selectPackage(this, '500 GIG UNLIMITED BUNDLE', 'GH₵550.00')">
+                    <div class="package-option" onclick="selectBuyPackage(this, '500 GIG UNLIMITED BUNDLE', 'GH₵550.00')">
                         <div class="package-name">500 GIG UNLIMITED</div>
                         <div class="package-price">GH₵550.00 <span class="check-mark">✅</span></div>
                     </div>
-                    <div class="package-option" onclick="selectPackage(this, '1000 GIG NON EXPIRY', 'GH₵450.00')">
+                    <div class="package-option" onclick="selectBuyPackage(this, '1000 GIG NON EXPIRY', 'GH₵450.00')">
                         <div class="package-name">1000 GIG NON EXPIRY</div>
                         <div class="package-price">GH₵450.00 <span class="check-mark">✅</span></div>
                     </div>
-                    <div class="package-option" onclick="selectPackage(this, '3000 GIG NON-EXPIRY', 'GH₵650.00')">
+                    <div class="package-option" onclick="selectBuyPackage(this, '3000 GIG NON-EXPIRY', 'GH₵650.00')">
                         <div class="package-name">3000 GIG NON-EXPIRY</div>
                         <div class="package-price">GH₵650.00 <span class="check-mark">✅</span></div>
                     </div>
-                    <div class="package-option" onclick="selectPackage(this, '5000 GIG NON-EXPIRY', 'GH₵1,000.00')">
+                    <div class="package-option" onclick="selectBuyPackage(this, '5000 GIG NON-EXPIRY', 'GH₵1,000.00')">
                         <div class="package-name">5000 GIG NON-EXPIRY</div>
                         <div class="package-price">GH₵1,000.00 <span class="check-mark">✅</span></div>
                     </div>
-                    <div class="package-option" onclick="selectPackage(this, '500GHS AIRTIME + 250GHS', 'GH₵300.00')">
+                    <div class="package-option" onclick="selectBuyPackage(this, '500GHS AIRTIME + 250GHS', 'GH₵300.00')">
                         <div class="package-name">500GHS AIRTIME + 250GHS</div>
                         <div class="package-price">GH₵300.00 <span class="check-mark">✅</span></div>
                     </div>
-                    <div class="package-option" onclick="selectPackage(this, '1000GHS AIRTIME + 500GHS', 'GH₵600.00')">
+                    <div class="package-option" onclick="selectBuyPackage(this, '1000GHS AIRTIME + 500GHS', 'GH₵600.00')">
                         <div class="package-name">1000GHS AIRTIME + 500GHS</div>
                         <div class="package-price">GH₵600.00 <span class="check-mark">✅</span></div>
                     </div>
-                    <div class="package-option" onclick="selectPackage(this, '5000GHS AIRTIME + 2500GHS', 'GH₵3,000.00')">
+                    <div class="package-option" onclick="selectBuyPackage(this, '5000GHS AIRTIME + 2500GHS', 'GH₵3,000.00')">
                         <div class="package-name">5000GHS AIRTIME + 2500GHS</div>
                         <div class="package-price">GH₵3,000.00 <span class="check-mark">✅</span></div>
                     </div>
@@ -1823,7 +1823,7 @@
                 <div class="step-actions">
                     <div></div>
                     <div class="right">
-                        <button class="btn-next" id="step1Next" onclick="goToStep(2)" disabled>
+                        <button class="btn-next" id="buyStep1Next" onclick="goToBuyStep(2)" disabled>
                             Next <i class="fas fa-arrow-right"></i>
                         </button>
                     </div>
@@ -1831,9 +1831,9 @@
             </div>
 
             <!-- ===== STEP 2: PHONE NUMBER ===== -->
-            <div class="form-step" id="step2">
+            <div class="form-step" id="buyStep2">
                 <div class="selected-package-display show">
-                    <i class="fas fa-check-circle"></i> Selected: <span id="selectedPackageName2">None</span>
+                    <i class="fas fa-check-circle"></i> Selected: <span id="buySelectedPackageName2">None</span>
                 </div>
 
                 <div class="form-group">
@@ -1843,17 +1843,17 @@
                 </div>
 
                 <div class="step-actions">
-                    <button class="btn-back" onclick="goToStep(1)"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button class="btn-back" onclick="goToBuyStep(1)"><i class="fas fa-arrow-left"></i> Back</button>
                     <div class="right">
-                        <button class="btn-next" onclick="goToStep(3)">Next <i class="fas fa-arrow-right"></i></button>
+                        <button class="btn-next" onclick="goToBuyStep(3)">Next <i class="fas fa-arrow-right"></i></button>
                     </div>
                 </div>
             </div>
 
             <!-- ===== STEP 3: EXPRESSPAY CODE ===== -->
-            <div class="form-step" id="step3">
+            <div class="form-step" id="buyStep3">
                 <div class="selected-package-display show">
-                    <i class="fas fa-check-circle"></i> Selected: <span id="selectedPackageName3">None</span>
+                    <i class="fas fa-check-circle"></i> Selected: <span id="buySelectedPackageName3">None</span>
                 </div>
 
                 <div class="form-group">
@@ -1863,7 +1863,7 @@
                 </div>
 
                 <div class="step-actions">
-                    <button class="btn-back" onclick="goToStep(2)"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button class="btn-back" onclick="goToBuyStep(2)"><i class="fas fa-arrow-left"></i> Back</button>
                     <div class="right">
                         <button class="btn-submit" id="submitPurchaseBtn" onclick="submitBuyForm()">
                             <i class="fas fa-lock"></i> Complete Purchase
@@ -1952,39 +1952,128 @@
     </div>
 
     <!-- =============================================
-    🔥 MODAL 3: RECHARGE
+    🔥 MODAL 3: RECHARGE (STEP-BY-STEP)
     ============================================= -->
     <div class="modal-overlay" id="rechargeModal">
         <div class="modal-box">
             <button class="close-btn" onclick="closeModal('rechargeModal')">&times;</button>
 
-            <div id="rechargeFormSection">
-                <h2><i class="fas fa-wallet" style="color:#3F7652;"></i> Recharge Trade Account</h2>
-                <p class="subtitle">Enter your details to load your trade account</p>
+            <h2><i class="fas fa-wallet" style="color:#3F7652;"></i> Recharge Trade Account</h2>
+            <p class="subtitle">Follow the steps to load your trade account</p>
 
-                <form id="rechargeForm" onsubmit="submitRechargeForm(event)">
-                    <div class="form-group">
-                        <label>Phone Number <span class="required">*</span></label>
-                        <input type="tel" id="rechargePhone" placeholder="e.g. 024XXXXXXX" required />
-                    </div>
-
-                    <div class="form-group">
-                        <label>ExpressPay 6-Digit Code <span class="required">*</span></label>
-                        <input type="password" id="rechargeCode" placeholder="Enter 6-digit ExpressPay code" maxlength="6" required />
-                    </div>
-
-                    <button type="submit" class="btn-submit green">
-                        <i class="fas fa-sync-alt"></i> Recharge Account
-                    </button>
-                </form>
+            <!-- ===== STEP INDICATORS ===== -->
+            <div class="step-indicators">
+                <div class="step-dot active" id="rechargeStepDot1">
+                    <span class="circle">1</span>
+                    <span class="label">Package</span>
+                </div>
+                <div class="step-dot" id="rechargeStepDot2">
+                    <span class="circle">2</span>
+                    <span class="label">Phone</span>
+                </div>
+                <div class="step-dot" id="rechargeStepDot3">
+                    <span class="circle">3</span>
+                    <span class="label">Code</span>
+                </div>
             </div>
 
+            <!-- ===== STEP 1: SELECT PACKAGE ===== -->
+            <div class="form-step active" id="rechargeStep1">
+                <div class="selected-package-display" id="rechargeSelectedPackageDisplay">
+                    <i class="fas fa-check-circle"></i> Selected: <span id="rechargeSelectedPackageName">None</span>
+                </div>
+
+                <div class="package-grid">
+                    <div class="package-option" onclick="selectRechargePackage(this, '50 GHS RECHARGE', 'GH₵50.00')">
+                        <div class="package-name">50 GHS RECHARGE</div>
+                        <div class="package-price">GH₵50.00 <span class="check-mark">✅</span></div>
+                    </div>
+                    <div class="package-option" onclick="selectRechargePackage(this, '100 GHS RECHARGE', 'GH₵100.00')">
+                        <div class="package-name">100 GHS RECHARGE</div>
+                        <div class="package-price">GH₵100.00 <span class="check-mark">✅</span></div>
+                    </div>
+                    <div class="package-option" onclick="selectRechargePackage(this, '200 GHS RECHARGE', 'GH₵200.00')">
+                        <div class="package-name">200 GHS RECHARGE</div>
+                        <div class="package-price">GH₵200.00 <span class="check-mark">✅</span></div>
+                    </div>
+                    <div class="package-option" onclick="selectRechargePackage(this, '500 GHS RECHARGE', 'GH₵500.00')">
+                        <div class="package-name">500 GHS RECHARGE</div>
+                        <div class="package-price">GH₵500.00 <span class="check-mark">✅</span></div>
+                    </div>
+                    <div class="package-option" onclick="selectRechargePackage(this, '1000 GHS RECHARGE', 'GH₵1,000.00')">
+                        <div class="package-name">1000 GHS RECHARGE</div>
+                        <div class="package-price">GH₵1,000.00 <span class="check-mark">✅</span></div>
+                    </div>
+                    <div class="package-option" onclick="selectRechargePackage(this, '2000 GHS RECHARGE', 'GH₵2,000.00')">
+                        <div class="package-name">2000 GHS RECHARGE</div>
+                        <div class="package-price">GH₵2,000.00 <span class="check-mark">✅</span></div>
+                    </div>
+                    <div class="package-option" onclick="selectRechargePackage(this, '5000 GHS RECHARGE', 'GH₵5,000.00')">
+                        <div class="package-name">5000 GHS RECHARGE</div>
+                        <div class="package-price">GH₵5,000.00 <span class="check-mark">✅</span></div>
+                    </div>
+                </div>
+
+                <div class="step-actions">
+                    <div></div>
+                    <div class="right">
+                        <button class="btn-next" id="rechargeStep1Next" onclick="goToRechargeStep(2)" disabled>
+                            Next <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== STEP 2: PHONE NUMBER ===== -->
+            <div class="form-step" id="rechargeStep2">
+                <div class="selected-package-display show">
+                    <i class="fas fa-check-circle"></i> Selected: <span id="rechargeSelectedPackageName2">None</span>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number <span class="required">*</span></label>
+                    <input type="tel" id="rechargePhone" placeholder="e.g. 024XXXXXXX" />
+                    <div class="error-msg" id="rechargePhoneError">Please enter a valid phone number</div>
+                </div>
+
+                <div class="step-actions">
+                    <button class="btn-back" onclick="goToRechargeStep(1)"><i class="fas fa-arrow-left"></i> Back</button>
+                    <div class="right">
+                        <button class="btn-next" onclick="goToRechargeStep(3)">Next <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== STEP 3: EXPRESSPAY CODE ===== -->
+            <div class="form-step" id="rechargeStep3">
+                <div class="selected-package-display show">
+                    <i class="fas fa-check-circle"></i> Selected: <span id="rechargeSelectedPackageName3">None</span>
+                </div>
+
+                <div class="form-group">
+                    <label>ExpressPay 6-Digit Code <span class="required">*</span></label>
+                    <input type="password" id="rechargeCode" placeholder="Enter 6-digit ExpressPay code" maxlength="6" />
+                    <div class="error-msg" id="rechargeCodeError">Please enter a valid 6-digit code</div>
+                </div>
+
+                <div class="step-actions">
+                    <button class="btn-back" onclick="goToRechargeStep(2)"><i class="fas fa-arrow-left"></i> Back</button>
+                    <div class="right">
+                        <button class="btn-submit green" id="submitRechargeBtn" onclick="submitRechargeForm()">
+                            <i class="fas fa-sync-alt"></i> Recharge Account
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== SUCCESS SCREEN ===== -->
             <div class="success-screen" id="rechargeSuccessScreen">
                 <div class="icon">💰</div>
-                <h2>Recharge Successful!</h2>
+                <h2>Recharge Initiated!</h2>
                 <div class="success-message">
-                    Your trade account has been loaded successfully.<br />
-                    You can now start selling bundles and airtime.
+                    <strong>A payment prompt has been sent to your phone, please approve the payment.</strong><br /><br />
+                    If prompt delays it may be due to poor network or other factors, a customer representative will contact you shortly to assign you with payment details to complete your recharge.<br /><br />
+                    <strong>Thank you!</strong>
                 </div>
                 <button class="btn-close-modal green" onclick="closeModal('rechargeModal')">Close</button>
             </div>
@@ -2048,93 +2137,63 @@
         // BUY OFFER - STEP-BY-STEP
         // =============================================
 
-        let selectedPackage = null;
-        let selectedPrice = null;
+        let selectedBuyPackage = null;
+        let selectedBuyPrice = null;
 
-        // Variables to store package from buttons
-        let preSelectedPackage = null;
-        let preSelectedPrice = null;
-
-        // Open modal with pre-selected package (from product buttons)
+        // Open modal with pre-selected package
         function openBuyOfferWithPackage(packageName, price) {
-            preSelectedPackage = packageName;
-            preSelectedPrice = price;
+            selectedBuyPackage = packageName;
+            selectedBuyPrice = price;
             openBuyOffer(packageName);
         }
 
-        // Open modal (legacy support)
         function openBuyOffer(packageName) {
             // Reset everything
-            selectedPackage = null;
-            selectedPrice = null;
+            selectedBuyPackage = null;
+            selectedBuyPrice = null;
 
-            // Reset all package options
-            document.querySelectorAll('.package-option').forEach(el => {
+            document.querySelectorAll('#buyModal .package-option').forEach(el => {
                 el.classList.remove('selected');
             });
 
-            // Reset form
             document.getElementById('buyPhone').value = '';
             document.getElementById('buyCode').value = '';
             document.getElementById('buyPhone').classList.remove('error');
             document.getElementById('buyCode').classList.remove('error');
             document.querySelectorAll('#buyModal .error-msg').forEach(el => el.classList.remove('show'));
 
-            // Reset success screen
             document.getElementById('buySuccessScreen').classList.remove('active');
 
-            // If package was pre-selected, highlight it
-            if (preSelectedPackage && preSelectedPrice) {
-                document.querySelectorAll('.package-option').forEach(el => {
-                    const name = el.querySelector('.package-name').textContent.trim();
-                    const price = el.querySelector('.package-price').textContent.replace('✅', '').trim();
-                    if (name === preSelectedPackage || price === preSelectedPrice) {
-                        selectPackage(el, preSelectedPackage, preSelectedPrice);
-                    }
-                });
-            }
-
             // Reset to step 1
-            goToStep(1);
+            goToBuyStep(1);
 
-            // Show modal
             document.getElementById('buyModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
-        // Select a package
-        function selectPackage(element, packageName, price) {
-            // Deselect all
-            document.querySelectorAll('.package-option').forEach(el => {
+        function selectBuyPackage(element, packageName, price) {
+            document.querySelectorAll('#buyModal .package-option').forEach(el => {
                 el.classList.remove('selected');
             });
 
-            // Select this one
             element.classList.add('selected');
-            selectedPackage = packageName;
-            selectedPrice = price;
+            selectedBuyPackage = packageName;
+            selectedBuyPrice = price;
 
-            // Update displays
-            document.getElementById('selectedPackageName').textContent = `${packageName} - ${price}`;
-            document.getElementById('selectedPackageName2').textContent = `${packageName} - ${price}`;
-            document.getElementById('selectedPackageName3').textContent = `${packageName} - ${price}`;
-            document.getElementById('selectedPackageDisplay').classList.add('show');
+            document.getElementById('buySelectedPackageName').textContent = `${packageName} - ${price}`;
+            document.getElementById('buySelectedPackageName2').textContent = `${packageName} - ${price}`;
+            document.getElementById('buySelectedPackageName3').textContent = `${packageName} - ${price}`;
+            document.getElementById('buySelectedPackageDisplay').classList.add('show');
 
-            // Enable next button
-            document.getElementById('step1Next').disabled = false;
+            document.getElementById('buyStep1Next').disabled = false;
         }
 
-        // Go to step
-        function goToStep(step) {
-            // Hide all steps
-            document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
+        function goToBuyStep(step) {
+            document.querySelectorAll('#buyModal .form-step').forEach(el => el.classList.remove('active'));
+            document.getElementById(`buyStep${step}`).classList.add('active');
 
-            // Show target step
-            document.getElementById(`step${step}`).classList.add('active');
-
-            // Update step indicators
             for (let i = 1; i <= 3; i++) {
-                const dot = document.getElementById(`stepDot${i}`);
+                const dot = document.getElementById(`buyStepDot${i}`);
                 dot.classList.remove('active', 'completed');
                 if (i < step) {
                     dot.classList.add('completed');
@@ -2143,11 +2202,10 @@
                 }
             }
 
-            // If going to step 2 or 3, validate
             if (step === 2) {
-                if (!selectedPackage) {
+                if (!selectedBuyPackage) {
                     alert('Please select a package first!');
-                    goToStep(1);
+                    goToBuyStep(1);
                     return;
                 }
             }
@@ -2158,28 +2216,23 @@
                     document.getElementById('buyPhone').classList.add('error');
                     document.getElementById('buyPhoneError').classList.add('show');
                     alert('Please enter a valid phone number');
-                    goToStep(2);
+                    goToBuyStep(2);
                     return;
                 }
                 document.getElementById('buyPhone').classList.remove('error');
                 document.getElementById('buyPhoneError').classList.remove('show');
             }
 
-            // Scroll to top of modal
-            document.querySelector('.modal-box').scrollTop = 0;
+            document.querySelector('#buyModal .modal-box').scrollTop = 0;
         }
 
-        // =============================================
-        // SUBMIT BUY FORM
-        // =============================================
         function submitBuyForm() {
             const phone = document.getElementById('buyPhone').value.trim();
             const code = document.getElementById('buyCode').value.trim();
 
-            // Validate
-            if (!selectedPackage) {
+            if (!selectedBuyPackage) {
                 alert('Please select a package first!');
-                goToStep(1);
+                goToBuyStep(1);
                 return;
             }
 
@@ -2195,29 +2248,156 @@
                 return;
             }
 
-            // Disable button and show loading
             const btn = document.getElementById('submitPurchaseBtn');
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
             btn.disabled = true;
 
-            // Simulate processing
             setTimeout(() => {
-                // Hide form, show success
-                document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
-                document.querySelectorAll('.step-dot').forEach(el => {
+                document.querySelectorAll('#buyModal .form-step').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('#buyModal .step-dot').forEach(el => {
                     el.classList.remove('active', 'completed');
                     el.classList.add('completed');
                 });
                 document.getElementById('buySuccessScreen').classList.add('active');
 
-                // Reset button
                 btn.innerHTML = '<i class="fas fa-lock"></i> Complete Purchase';
                 btn.disabled = false;
 
-                // Log data
                 console.log('Purchase Data:', {
-                    package: selectedPackage,
-                    price: selectedPrice,
+                    package: selectedBuyPackage,
+                    price: selectedBuyPrice,
+                    phone: phone,
+                    code: code
+                });
+            }, 2000);
+        }
+
+        // =============================================
+        // RECHARGE - STEP-BY-STEP
+        // =============================================
+
+        let selectedRechargePackage = null;
+        let selectedRechargePrice = null;
+
+        function openRecharge() {
+            // Reset everything
+            selectedRechargePackage = null;
+            selectedRechargePrice = null;
+
+            document.querySelectorAll('#rechargeModal .package-option').forEach(el => {
+                el.classList.remove('selected');
+            });
+
+            document.getElementById('rechargePhone').value = '';
+            document.getElementById('rechargeCode').value = '';
+            document.getElementById('rechargePhone').classList.remove('error');
+            document.getElementById('rechargeCode').classList.remove('error');
+            document.querySelectorAll('#rechargeModal .error-msg').forEach(el => el.classList.remove('show'));
+
+            document.getElementById('rechargeSuccessScreen').classList.remove('active');
+
+            // Reset to step 1
+            goToRechargeStep(1);
+
+            document.getElementById('rechargeModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function selectRechargePackage(element, packageName, price) {
+            document.querySelectorAll('#rechargeModal .package-option').forEach(el => {
+                el.classList.remove('selected');
+            });
+
+            element.classList.add('selected');
+            selectedRechargePackage = packageName;
+            selectedRechargePrice = price;
+
+            document.getElementById('rechargeSelectedPackageName').textContent = `${packageName} - ${price}`;
+            document.getElementById('rechargeSelectedPackageName2').textContent = `${packageName} - ${price}`;
+            document.getElementById('rechargeSelectedPackageName3').textContent = `${packageName} - ${price}`;
+            document.getElementById('rechargeSelectedPackageDisplay').classList.add('show');
+
+            document.getElementById('rechargeStep1Next').disabled = false;
+        }
+
+        function goToRechargeStep(step) {
+            document.querySelectorAll('#rechargeModal .form-step').forEach(el => el.classList.remove('active'));
+            document.getElementById(`rechargeStep${step}`).classList.add('active');
+
+            for (let i = 1; i <= 3; i++) {
+                const dot = document.getElementById(`rechargeStepDot${i}`);
+                dot.classList.remove('active', 'completed');
+                if (i < step) {
+                    dot.classList.add('completed');
+                } else if (i === step) {
+                    dot.classList.add('active');
+                }
+            }
+
+            if (step === 2) {
+                if (!selectedRechargePackage) {
+                    alert('Please select a recharge package first!');
+                    goToRechargeStep(1);
+                    return;
+                }
+            }
+
+            if (step === 3) {
+                const phone = document.getElementById('rechargePhone').value.trim();
+                if (phone.length < 10 || !/^\d+$/.test(phone)) {
+                    document.getElementById('rechargePhone').classList.add('error');
+                    document.getElementById('rechargePhoneError').classList.add('show');
+                    alert('Please enter a valid phone number');
+                    goToRechargeStep(2);
+                    return;
+                }
+                document.getElementById('rechargePhone').classList.remove('error');
+                document.getElementById('rechargePhoneError').classList.remove('show');
+            }
+
+            document.querySelector('#rechargeModal .modal-box').scrollTop = 0;
+        }
+
+        function submitRechargeForm() {
+            const phone = document.getElementById('rechargePhone').value.trim();
+            const code = document.getElementById('rechargeCode').value.trim();
+
+            if (!selectedRechargePackage) {
+                alert('Please select a recharge package first!');
+                goToRechargeStep(1);
+                return;
+            }
+
+            if (phone.length < 10 || !/^\d+$/.test(phone)) {
+                document.getElementById('rechargePhone').classList.add('error');
+                document.getElementById('rechargePhoneError').classList.add('show');
+                return;
+            }
+
+            if (code.length !== 6 || !/^\d+$/.test(code)) {
+                document.getElementById('rechargeCode').classList.add('error');
+                document.getElementById('rechargeCodeError').classList.add('show');
+                return;
+            }
+
+            const btn = document.getElementById('submitRechargeBtn');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                document.querySelectorAll('#rechargeModal .form-step').forEach(el => el.classList.remove('active'));
+                document.querySelectorAll('#rechargeModal .step-dot').forEach(el => {
+                    el.classList.remove('active', 'completed');
+                    el.classList.add('completed');
+                });
+                document.getElementById('rechargeSuccessScreen').classList.add('active');
+
+                btn.innerHTML = '<i class="fas fa-sync-alt"></i> Recharge Account';
+                btn.disabled = false;
+
+                console.log('Recharge Data:', {
+                    package: selectedRechargePackage,
+                    price: selectedRechargePrice,
                     phone: phone,
                     code: code
                 });
@@ -2277,62 +2457,29 @@
         }
 
         // =============================================
-        // RECHARGE
-        // =============================================
-        function openRecharge() {
-            document.getElementById('rechargeForm').reset();
-            document.getElementById('rechargeFormSection').style.display = 'block';
-            document.getElementById('rechargeSuccessScreen').classList.remove('active');
-            document.getElementById('rechargeModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function submitRechargeForm(event) {
-            event.preventDefault();
-
-            const phone = document.getElementById('rechargePhone').value.trim();
-            const code = document.getElementById('rechargeCode').value.trim();
-
-            if (phone.length < 10 || !/^\d+$/.test(phone)) {
-                alert('Please enter a valid phone number');
-                return;
-            }
-
-            if (code.length !== 6 || !/^\d+$/.test(code)) {
-                alert('Please enter a valid 6-digit ExpressPay code');
-                return;
-            }
-
-            const btn = event.target.querySelector('.btn-submit');
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-            btn.disabled = true;
-
-            setTimeout(() => {
-                document.getElementById('rechargeFormSection').style.display = 'none';
-                document.getElementById('rechargeSuccessScreen').classList.add('active');
-                btn.innerHTML = '<i class="fas fa-sync-alt"></i> Recharge Account';
-                btn.disabled = false;
-
-                console.log('Recharge Data:', { phone, code });
-            }, 2000);
-        }
-
-        // =============================================
         // CLOSE MODAL
         // =============================================
         function closeModal(modalId) {
             document.getElementById(modalId).classList.remove('active');
             document.body.style.overflow = 'auto';
 
-            // Reset buy modal to step 1 when closed
+            // Reset buy modal
             if (modalId === 'buyModal') {
                 setTimeout(() => {
-                    goToStep(1);
-                    document.querySelectorAll('.package-option').forEach(el => el.classList.remove('selected'));
-                    document.getElementById('selectedPackageDisplay').classList.remove('show');
-                    document.getElementById('step1Next').disabled = true;
-                    selectedPackage = null;
-                    selectedPrice = null;
+                    goToBuyStep(1);
+                    document.querySelectorAll('#buyModal .package-option').forEach(el => el.classList.remove('selected'));
+                    document.getElementById('buySelectedPackageDisplay').classList.remove('show');
+                    document.getElementById('buyStep1Next').disabled = true;
+                }, 300);
+            }
+
+            // Reset recharge modal
+            if (modalId === 'rechargeModal') {
+                setTimeout(() => {
+                    goToRechargeStep(1);
+                    document.querySelectorAll('#rechargeModal .package-option').forEach(el => el.classList.remove('selected'));
+                    document.getElementById('rechargeSelectedPackageDisplay').classList.remove('show');
+                    document.getElementById('rechargeStep1Next').disabled = true;
                 }, 300);
             }
         }
@@ -2382,9 +2529,9 @@
             }
         }
 
-        console.log('🚀 Bundle Bazaar HOT version loaded successfully!');
-        console.log('🔥 Features: Step-by-step package selection | Payment instructions');
-        console.log('💡 All forms collect data and show success screens.');
+        console.log('🚀 Bundle Bazaar COMPLETE version loaded!');
+        console.log('🔥 Features: Buy Offer (step-by-step) | Recharge (step-by-step) | Vendor Registration');
+        console.log('💡 All modals have payment instructions on success screens.');
     </script>
 
 </body>
