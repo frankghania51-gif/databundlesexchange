@@ -8,12 +8,17 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400;1,700&family=Helvetica:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <style>
-        /* ======================== */
-        /* RESET & BASE STYLES */
-        /* ======================== */
+        /* =============================================
+                   COMPLETE STYLES
+                   ============================================= */
+
+        /* ---------- RESET ---------- */
         * {
             margin: 0;
             padding: 0;
@@ -45,9 +50,7 @@
             padding: 0 20px;
         }
 
-        /* ======================== */
-        /* BUTTONS */
-        /* ======================== */
+        /* ---------- BUTTONS ---------- */
         .btn {
             display: inline-block;
             padding: 12px 32px;
@@ -73,6 +76,8 @@
         .btn-register:hover {
             background: #0069FF;
             color: #fff;
+            transform: scale(1.02);
+            box-shadow: 0 4px 20px rgba(0, 105, 255, 0.4);
         }
 
         .btn-register .btn-arrow {
@@ -94,6 +99,23 @@
             background: #fff;
             color: #000;
             border: 1px solid #000;
+        }
+
+        .btn-buy {
+            background: #0069FF;
+            color: #fff;
+            padding: 12px 28px;
+            font-size: 14px;
+            border-radius: 60px;
+            font-family: 'Helvetica', Arial, sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            width: 100%;
+        }
+
+        .btn-buy:hover {
+            background: #0048b3;
+            transform: scale(1.02);
         }
 
         .btn-quickview {
@@ -127,6 +149,7 @@
         .btn-register-vendor:hover {
             background: #fff;
             color: #3F7652;
+            transform: scale(1.02);
         }
 
         .btn-recharge {
@@ -145,11 +168,10 @@
             background: #fff;
             color: #3F7652;
             border-color: #3F7652;
+            transform: scale(1.02);
         }
 
-        /* ======================== */
-        /* HEADER */
-        /* ======================== */
+        /* ---------- HEADER ---------- */
         #SITE_HEADER {
             padding: 18px 0 0;
             position: relative;
@@ -221,9 +243,7 @@
             opacity: 0.2;
         }
 
-        /* ======================== */
-        /* HERO SECTION */
-        /* ======================== */
+        /* ---------- HERO ---------- */
         .hero-section {
             position: relative;
             min-height: 420px;
@@ -271,18 +291,7 @@
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 28px;
-            }
-            .hero-subtitle {
-                font-size: 18px;
-            }
-        }
-
-        /* ======================== */
-        /* DESCRIPTION SECTION */
-        /* ======================== */
+        /* ---------- DESCRIPTION ---------- */
         .description-section {
             padding: 40px 0 60px;
             background: #fff;
@@ -321,22 +330,7 @@
             font-family: 'Helvetica', Arial, sans-serif;
         }
 
-        @media (max-width: 768px) {
-            .description-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
-            }
-            .description-text {
-                order: 1;
-            }
-            .description-image {
-                order: 2;
-            }
-        }
-
-        /* ======================== */
-        /* PRODUCTS / SLIDER SECTION */
-        /* ======================== */
+        /* ---------- PRODUCTS / SLIDER ---------- */
         .products-section {
             padding: 40px 0 60px;
             background: #f9f9f9;
@@ -449,7 +443,6 @@
             font-size: 14px;
         }
 
-        /* Slider Controls */
         .slider-btn {
             position: absolute;
             top: 50%;
@@ -491,27 +484,7 @@
             margin-right: auto;
         }
 
-        @media (max-width: 768px) {
-            .slide {
-                flex: 0 0 calc(50% - 10px);
-                min-width: 140px;
-            }
-            .slider-btn {
-                width: 32px;
-                height: 32px;
-                font-size: 18px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .slide {
-                flex: 0 0 100%;
-            }
-        }
-
-        /* ======================== */
-        /* VENDOR SECTION */
-        /* ======================== */
+        /* ---------- VENDOR ---------- */
         .vendor-section {
             padding: 60px 0;
             background: #fff;
@@ -558,22 +531,7 @@
             height: auto;
         }
 
-        @media (max-width: 768px) {
-            .vendor-grid {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-            .vendor-left h2 {
-                font-size: 22px;
-            }
-            .vendor-right {
-                align-items: center;
-            }
-        }
-
-        /* ======================== */
-        /* RETAIL OFFERS SECTION */
-        /* ======================== */
+        /* ---------- RETAIL ---------- */
         .retail-section {
             padding: 60px 0;
             background: #f9f9f9;
@@ -657,25 +615,7 @@
             font-size: 13px;
         }
 
-        @media (max-width: 768px) {
-            .retail-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .retail-grid {
-                grid-template-columns: 1fr;
-            }
-            .retail-header h2 {
-                font-size: 24px;
-            }
-        }
-
-        /* ======================== */
-        /* GALLERY SECTION */
-        /* ======================== */
+        /* ---------- GALLERY ---------- */
         .gallery-section {
             padding: 40px 0 60px;
             background: #fff;
@@ -696,26 +636,7 @@
             object-fit: cover;
         }
 
-        @media (max-width: 1024px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 12px;
-            }
-            .gallery-grid img {
-                max-height: 300px;
-            }
-        }
-
-        /* ======================== */
-        /* FOOTER */
-        /* ======================== */
+        /* ---------- FOOTER ---------- */
         #SITE_FOOTER {
             background: #045184;
             padding: 40px 0 20px;
@@ -804,7 +725,335 @@
             font-family: 'Bree', 'Helvetica', sans-serif;
         }
 
+        /* =============================================
+                   🔥 HOT MODAL/POPUP STYLES 🔥
+                   ============================================= */
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-box {
+            background: #fff;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 92%;
+            padding: 40px 35px;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: slideUp 0.4s ease;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-box .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+        }
+
+        .modal-box .close-btn:hover {
+            color: #000;
+        }
+
+        .modal-box h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #000;
+            font-family: 'Helvetica', Arial, sans-serif;
+        }
+
+        .modal-box .subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+
+        .modal-box .product-name {
+            background: #f0f7ff;
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #0069FF;
+            font-size: 15px;
+            text-align: center;
+            border: 1px solid #d4e4ff;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .form-group label .required {
+            color: #ff4444;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: border-color 0.3s ease;
+            background: #fafafa;
+            font-family: 'Helvetica', Arial, sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #0069FF;
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(0, 105, 255, 0.1);
+        }
+
+        .form-group input.error {
+            border-color: #ff4444;
+            background: #fff5f5;
+        }
+
+        .form-group .error-msg {
+            display: none;
+            color: #ff4444;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .form-group .error-msg.show {
+            display: block;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .modal-box .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #0069FF, #0048b3);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+            font-family: 'Helvetica', Arial, sans-serif;
+        }
+
+        .modal-box .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 105, 255, 0.4);
+        }
+
+        .modal-box .btn-submit:active {
+            transform: scale(0.98);
+        }
+
+        /* ---------- SUCCESS SCREEN ---------- */
+        .success-screen {
+            display: none;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .success-screen.active {
+            display: block;
+        }
+
+        .success-screen .icon {
+            font-size: 70px;
+            margin-bottom: 15px;
+            animation: bounceIn 0.6s ease;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .success-screen h2 {
+            font-size: 26px;
+            color: #0069FF;
+            margin-bottom: 10px;
+        }
+
+        .success-screen p {
+            font-size: 16px;
+            color: #444;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .success-screen .btn-close-modal {
+            padding: 12px 40px;
+            background: #0069FF;
+            color: #fff;
+            border: none;
+            border-radius: 60px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .success-screen .btn-close-modal:hover {
+            background: #0048b3;
+            transform: scale(1.05);
+        }
+
+        /* ---------- MODAL RESPONSIVE ---------- */
+        @media (max-width: 600px) {
+            .modal-box {
+                padding: 30px 20px;
+                width: 95%;
+            }
+
+            .modal-box h2 {
+                font-size: 20px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .form-group input,
+            .form-group select {
+                padding: 10px 14px;
+                font-size: 14px;
+            }
+
+            .modal-box .btn-submit {
+                font-size: 16px;
+                padding: 12px;
+            }
+
+            .success-screen .icon {
+                font-size: 50px;
+            }
+
+            .success-screen h2 {
+                font-size: 20px;
+            }
+        }
+
+        /* ---------- RESPONSIVE GENERAL ---------- */
         @media (max-width: 768px) {
+            .hero-title {
+                font-size: 28px;
+            }
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .description-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .description-text {
+                order: 1;
+            }
+            .description-image {
+                order: 2;
+            }
+
+            .slide {
+                flex: 0 0 calc(50% - 10px);
+                min-width: 140px;
+            }
+            .slider-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 18px;
+            }
+
+            .vendor-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+            .vendor-left h2 {
+                font-size: 22px;
+            }
+            .vendor-right {
+                align-items: center;
+            }
+
+            .retail-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+            .retail-header h2 {
+                font-size: 24px;
+            }
+
             .footer-services {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 10px;
@@ -815,26 +1064,7 @@
             .footer-service h3 {
                 font-size: 16px;
             }
-        }
 
-        @media (max-width: 480px) {
-            .footer-services {
-                grid-template-columns: 1fr 1fr;
-                gap: 8px;
-            }
-            .footer-service {
-                padding: 20px 12px;
-                min-height: 100px;
-            }
-            .footer-service h3 {
-                font-size: 14px;
-            }
-        }
-
-        /* ======================== */
-        /* RESPONSIVE UTILITIES */
-        /* ======================== */
-        @media (max-width: 768px) {
             .btn-register {
                 padding: 12px 20px;
                 font-size: 14px;
@@ -867,24 +1097,74 @@
                 min-height: 300px;
                 padding: 40px 16px;
             }
+
+            .slide {
+                flex: 0 0 100%;
+            }
+
+            .retail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-services {
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+            }
+            .footer-service {
+                padding: 20px 12px;
+                min-height: 100px;
+            }
+            .footer-service h3 {
+                font-size: 14px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .gallery-grid img {
+                max-height: 300px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+        }
+
+        /* ---------- SCROLLBAR STYLING ---------- */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #0069FF;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0048b3;
         }
     </style>
 </head>
 <body>
 
-    <!-- ============================== -->
-    <!-- HEADER -->
-    <!-- ============================== -->
+    <!-- =============================================
+    HEADER
+    ============================================= -->
     <header id="SITE_HEADER">
         <div class="header-container">
-            <!-- Logo / Brand -->
             <div class="header-left">
                 <a href="#" class="logo">Bundle Bazaar</a>
             </div>
-
-            <!-- Right side: Cart + Login -->
             <div class="header-right">
-                <!-- Cart Icon -->
                 <div class="cart-icon">
                     <svg viewBox="0 0 105.5 126.1" width="34" height="40">
                         <path d="M102.143 118.16L93.812 48.2067C93.386 44.66 90.3566 42 86.7591 42H79.1382V56H74.4047V42H31.8032V56H27.0697V42H19.4488C15.8513 42 12.8219 44.66 12.3959 48.16L4.06489 118.16C3.78088 120.167 4.44357 122.173 5.76895 123.667C7.14167 125.16 9.0824 126 11.0705 126H95.1374C97.1255 126 99.0662 125.16 100.439 123.667C101.764 122.173 102.427 120.167 102.143 118.16Z" />
@@ -892,8 +1172,6 @@
                     </svg>
                     <span class="cart-badge">0</span>
                 </div>
-
-                <!-- Login Button -->
                 <div class="login-btn">
                     <div class="avatar-placeholder"></div>
                     <span>Log In</span>
@@ -902,9 +1180,9 @@
         </div>
     </header>
 
-    <!-- ============================== -->
-    <!-- HERO / BANNER SECTION -->
-    <!-- ============================== -->
+    <!-- =============================================
+    HERO SECTION
+    ============================================= -->
     <section id="hero" class="hero-section">
         <div class="hero-overlay">
             <div class="hero-content">
@@ -914,13 +1192,12 @@
         </div>
     </section>
 
-    <!-- ============================== -->
-    <!-- DESCRIPTION SECTION -->
-    <!-- ============================== -->
+    <!-- =============================================
+    DESCRIPTION SECTION
+    ============================================= -->
     <section id="description" class="description-section">
         <div class="container">
             <div class="description-grid">
-                <!-- Left: Text -->
                 <div class="description-text">
                     <p>
                         THE SUPER APP is where you can buy all your mobile data offers, top up your airtime,
@@ -930,31 +1207,31 @@
                         available for retailers. Click REGISTER AS A VENDOR below to activate your number.
                     </p>
                 </div>
-
-                <!-- Right: Image -->
                 <div class="description-image">
                     <img src="https://static.wixstatic.com/media/7f1931_c60d232510d54090807b61375dd6d597~mv2.jpg/v1/fill/w_450,h_262,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/DAT1_edited.jpg" alt="Data Bundle" />
                 </div>
             </div>
 
-            <!-- Register Button -->
             <div class="register-wrapper">
-                <a href="https://1irj7fmq.forms.app/phone-number-2-1-2" target="_blank" class="btn btn-register">
+                <!-- VENDOR REGISTRATION BUTTON -->
+                <button class="btn btn-register" onclick="openVendorRegistration()">
                     CLICK HERE TO REGISTER AS VENDOR
                     <span class="btn-arrow">→</span>
-                </a>
+                </button>
                 <p class="register-note">CLICK the button to register as an agent</p>
             </div>
         </div>
     </section>
 
-    <!-- ============================== -->
-    <!-- PRODUCT SLIDER SECTION -->
-    <!-- ============================== -->
+    <!-- =============================================
+    PRODUCT SLIDER SECTION
+    ============================================= -->
     <section id="products" class="products-section">
         <div class="container">
             <div class="products-header">
-                <a href="https://1irj7fmq.forms.app/phone-number-2-1" target="_blank" class="btn btn-dark">CLICK HERE TO SELECT AN OFFER</a>
+                <button class="btn btn-dark" onclick="openBuyOffer('Standard Bundle')">
+                    CLICK HERE TO SELECT AN OFFER
+                </button>
                 <p class="products-note">CLICK the button to buy data</p>
             </div>
 
@@ -969,6 +1246,7 @@
                             <div class="product-info">
                                 <h3>80 GIG UNLIMITED BUNDLE</h3>
                                 <div class="product-price">GH₵90.00</div>
+                                <button class="btn btn-buy" onclick="openBuyOffer('80 GIG UNLIMITED BUNDLE - GH₵90.00')">Buy This Offer</button>
                                 <button class="btn btn-quickview">Quick View</button>
                             </div>
                         </div>
@@ -983,6 +1261,7 @@
                             <div class="product-info">
                                 <h3>100 GIG UNLIMITED BUNDLE</h3>
                                 <div class="product-price"><span class="old-price">GH₵150.00</span> GH₵130.00</div>
+                                <button class="btn btn-buy" onclick="openBuyOffer('100 GIG UNLIMITED BUNDLE - GH₵130.00')">Buy This Offer</button>
                                 <button class="btn btn-quickview">Quick View</button>
                             </div>
                         </div>
@@ -997,6 +1276,7 @@
                             <div class="product-info">
                                 <h3>214 GIG UNLIMITED BUNDLE</h3>
                                 <div class="product-price"><span class="old-price">GH₵399.00</span> GH₵300.00</div>
+                                <button class="btn btn-buy" onclick="openBuyOffer('214 GIG UNLIMITED BUNDLE - GH₵300.00')">Buy This Offer</button>
                                 <button class="btn btn-quickview">Quick View</button>
                             </div>
                         </div>
@@ -1009,6 +1289,7 @@
                             <div class="product-info">
                                 <h3>300 GIG UNLIMITED BUNDLE</h3>
                                 <div class="product-price">GH₵400.00</div>
+                                <button class="btn btn-buy" onclick="openBuyOffer('300 GIG UNLIMITED BUNDLE - GH₵400.00')">Buy This Offer</button>
                                 <button class="btn btn-quickview">Quick View</button>
                             </div>
                         </div>
@@ -1023,18 +1304,17 @@
                             <div class="product-info">
                                 <h3>500 GIG UNLIMITED BUNDLE</h3>
                                 <div class="product-price"><span class="old-price">GH₵700.00</span> GH₵550.00</div>
+                                <button class="btn btn-buy" onclick="openBuyOffer('500 GIG UNLIMITED BUNDLE - GH₵550.00')">Buy This Offer</button>
                                 <button class="btn btn-quickview">Quick View</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Slider Controls -->
                 <button class="slider-btn prev" id="prevBtn">‹</button>
                 <button class="slider-btn next" id="nextBtn">›</button>
             </div>
 
-            <!-- Info text below slider -->
             <div class="products-info-text">
                 <p>
                     These offers listed here are for personal use, you can buy any of these offers to all networks,
@@ -1046,13 +1326,12 @@
         </div>
     </section>
 
-    <!-- ============================== -->
-    <!-- VENDOR SECTION -->
-    <!-- ============================== -->
+    <!-- =============================================
+    VENDOR SECTION
+    ============================================= -->
     <section id="vendor" class="vendor-section">
         <div class="container">
             <div class="vendor-grid">
-                <!-- Left Column -->
                 <div class="vendor-left">
                     <h2>HOW TO BECOME A DATA BUNDLE AND AIRTIME VENDOR AND EARN HIGH PROFITS.</h2>
                     <p>
@@ -1069,20 +1348,19 @@
                     </p>
                 </div>
 
-                <!-- Right Column: Image + Register -->
                 <div class="vendor-right">
                     <div class="vendor-image-wrapper">
                         <img src="https://static.wixstatic.com/media/7f1931_4fb97d63f9cb4caab4048ae539adadf9~mv2.jpg/v1/fill/w_262,h_419,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/DAT3_edited.jpg" alt="Vendor" />
                     </div>
-                    <a href="https://1irj7fmq.forms.app/phone-number-2-1-2" target="_blank" class="btn btn-register-vendor">REGISTER</a>
+                    <button class="btn btn-register-vendor" onclick="openVendorRegistration()">REGISTER</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ============================== -->
-    <!-- RETAIL OFFERS SECTION -->
-    <!-- ============================== -->
+    <!-- =============================================
+    RETAIL OFFERS SECTION
+    ============================================= -->
     <section id="retail" class="retail-section">
         <div class="container">
             <div class="retail-header">
@@ -1092,9 +1370,9 @@
                     When you buy a data offer as a retailer you will receive 50% additional trade bonus
                     to boost your profit margin. Click on RECHARGE below to load your trade account.
                 </p>
-                <a href="https://1irj7fmq.forms.app/phone-number-2-1-1" target="_blank" class="btn btn-recharge">
+                <button class="btn btn-recharge" onclick="openRecharge()">
                     RECHARGE →
-                </a>
+                </button>
             </div>
 
             <div class="retail-grid">
@@ -1106,6 +1384,7 @@
                     <div class="retail-info">
                         <h3>5000GHS AIRTIME + 2500GHS FREE</h3>
                         <div class="retail-price"><span class="old-price">GH₵3,500.00</span> GH₵3,000.00</div>
+                        <button class="btn btn-buy" onclick="openBuyOffer('5000GHS AIRTIME + 2500GHS FREE - GH₵3,000.00')">Buy This Offer</button>
                         <button class="btn btn-quickview">Quick View</button>
                     </div>
                 </div>
@@ -1118,6 +1397,7 @@
                     <div class="retail-info">
                         <h3>1000GHS AIRTIME + 500GHS FREE</h3>
                         <div class="retail-price"><span class="old-price">GH₵750.00</span> GH₵600.00</div>
+                        <button class="btn btn-buy" onclick="openBuyOffer('1000GHS AIRTIME + 500GHS FREE - GH₵600.00')">Buy This Offer</button>
                         <button class="btn btn-quickview">Quick View</button>
                     </div>
                 </div>
@@ -1130,6 +1410,7 @@
                     <div class="retail-info">
                         <h3>500GHS AIRTIME + 250GHS FREE</h3>
                         <div class="retail-price"><span class="old-price">GH₵400.00</span> GH₵300.00</div>
+                        <button class="btn btn-buy" onclick="openBuyOffer('500GHS AIRTIME + 250GHS FREE - GH₵300.00')">Buy This Offer</button>
                         <button class="btn btn-quickview">Quick View</button>
                     </div>
                 </div>
@@ -1142,6 +1423,7 @@
                     <div class="retail-info">
                         <h3>5000 GIG NON-EXPIRY BUNDLE</h3>
                         <div class="retail-price"><span class="old-price">GH₵1,200.00</span> GH₵1,000.00</div>
+                        <button class="btn btn-buy" onclick="openBuyOffer('5000 GIG NON-EXPIRY BUNDLE - GH₵1,000.00')">Buy This Offer</button>
                         <button class="btn btn-quickview">Quick View</button>
                     </div>
                 </div>
@@ -1152,6 +1434,7 @@
                     <div class="retail-info">
                         <h3>3000 GIG NON-EXPIRY BUNDLE</h3>
                         <div class="retail-price"><span class="old-price">GH₵800.00</span> GH₵650.00</div>
+                        <button class="btn btn-buy" onclick="openBuyOffer('3000 GIG NON-EXPIRY BUNDLE - GH₵650.00')">Buy This Offer</button>
                         <button class="btn btn-quickview">Quick View</button>
                     </div>
                 </div>
@@ -1162,6 +1445,7 @@
                     <div class="retail-info">
                         <h3>1000 GIG NON EXPIRY BUNDLE</h3>
                         <div class="retail-price"><span class="old-price">GH₵600.00</span> GH₵450.00</div>
+                        <button class="btn btn-buy" onclick="openBuyOffer('1000 GIG NON EXPIRY BUNDLE - GH₵450.00')">Buy This Offer</button>
                         <button class="btn btn-quickview">Quick View</button>
                     </div>
                 </div>
@@ -1169,9 +1453,9 @@
         </div>
     </section>
 
-    <!-- ============================== -->
-    <!-- GALLERY SECTION -->
-    <!-- ============================== -->
+    <!-- =============================================
+    GALLERY SECTION
+    ============================================= -->
     <section id="gallery" class="gallery-section">
         <div class="container">
             <div class="gallery-grid">
@@ -1183,9 +1467,9 @@
         </div>
     </section>
 
-    <!-- ============================== -->
-    <!-- FOOTER -->
-    <!-- ============================== -->
+    <!-- =============================================
+    FOOTER
+    ============================================= -->
     <footer id="SITE_FOOTER">
         <div class="footer-container">
             <div class="footer-title">
@@ -1193,29 +1477,20 @@
             </div>
 
             <div class="footer-services">
-                <!-- Service 1: INVEST -->
                 <div class="footer-service" style="background-color: #ff6161;">
                     <h3>INVEST</h3>
                     <a href="#" class="footer-link">Read More</a>
                 </div>
-
-                <!-- Service 2: Image -->
                 <div class="footer-service-image">
                     <img src="https://static.wixstatic.com/media/61cfb0e5d4d24657988c01e3ee517cbb.jpg/v1/fill/w_186,h_124,al_c,q_80,usm_0.66_1.00_0.01,blur_3,enc_avif,quality_auto/61cfb0e5d4d24657988c01e3ee517cbb.jpg" alt="Invest" />
                 </div>
-
-                <!-- Service 3: INTERNET BUNDLE -->
                 <div class="footer-service" style="background-color: #ff6161;">
                     <h3>INTERNET BUNDLE</h3>
                     <a href="#" class="footer-link">Read More</a>
                 </div>
-
-                <!-- Service 4: Image -->
                 <div class="footer-service-image">
                     <img src="https://static.wixstatic.com/media/2144345e48ac4090a6bafc808f15fbb4.jpg/v1/fill/w_186,h_129,al_c,q_80,usm_0.66_1.00_0.01,blur_3,enc_avif,quality_auto/2144345e48ac4090a6bafc808f15fbb4.jpg" alt="Internet Bundle" />
                 </div>
-
-                <!-- Service 5: AIRTIME -->
                 <div class="footer-service" style="background-color: #ff6161;">
                     <h3>AIRTIME</h3>
                     <a href="#" class="footer-link">Read More</a>
@@ -1228,9 +1503,164 @@
         </div>
     </footer>
 
-    <!-- ============================== -->
-    <!-- JAVASCRIPT -->
-    <!-- ============================== -->
+    <!-- =============================================
+    🔥 MODAL 1: BUY OFFER (Phone + ExpressPay Code)
+    ============================================= -->
+    <div class="modal-overlay" id="buyModal">
+        <div class="modal-box">
+            <button class="close-btn" onclick="closeModal('buyModal')">&times;</button>
+
+            <!-- Form Section -->
+            <div id="buyFormSection">
+                <h2><i class="fas fa-shopping-cart" style="color:#0069FF;"></i> Buy This Offer</h2>
+                <p class="subtitle">Enter your details to complete the purchase</p>
+
+                <div class="product-name" id="buyProductName">Product Name Here</div>
+
+                <form id="buyForm" onsubmit="submitBuyForm(event)">
+                    <div class="form-group">
+                        <label>Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="buyPhone" placeholder="e.g. 024XXXXXXX" required />
+                        <div class="error-msg" id="buyPhoneError">Please enter a valid phone number</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>ExpressPay 6-Digit Code <span class="required">*</span></label>
+                        <input type="password" id="buyCode" placeholder="Enter 6-digit ExpressPay code" maxlength="6" required />
+                        <div class="error-msg" id="buyCodeError">Please enter a valid 6-digit code</div>
+                    </div>
+
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-lock"></i> Complete Purchase
+                    </button>
+                </form>
+            </div>
+
+            <!-- Success Section -->
+            <div class="success-screen" id="buySuccessScreen">
+                <div class="icon">✅</div>
+                <h2>Purchase Successful!</h2>
+                <p>
+                    Your order has been processed successfully.<br />
+                    You will receive a confirmation SMS shortly.
+                </p>
+                <button class="btn-close-modal" onclick="closeModal('buyModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =============================================
+    🔥 MODAL 2: VENDOR REGISTRATION
+    ============================================= -->
+    <div class="modal-overlay" id="vendorModal">
+        <div class="modal-box">
+            <button class="close-btn" onclick="closeModal('vendorModal')">&times;</button>
+
+            <!-- Form Section -->
+            <div id="vendorFormSection">
+                <h2><i class="fas fa-user-plus" style="color:#3F7652;"></i> Vendor Registration</h2>
+                <p class="subtitle">Register as a vendor to start selling bundles and airtime</p>
+
+                <form id="vendorForm" onsubmit="submitVendorForm(event)">
+                    <div class="form-group">
+                        <label>Full Name <span class="required">*</span></label>
+                        <input type="text" id="vendorFullName" placeholder="Enter your full name" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="vendorPhone" placeholder="e.g. 024XXXXXXX" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Business Name <span class="required">*</span></label>
+                        <input type="text" id="vendorBusiness" placeholder="Enter your business name" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Trade Type <span class="required">*</span></label>
+                        <select id="vendorTradeType" required>
+                            <option value="">Select trade type...</option>
+                            <option value="Internet Bundle">Internet Bundle</option>
+                            <option value="Airtime">Airtime</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Date of Birth <span class="required">*</span></label>
+                            <input type="date" id="vendorDob" required />
+                        </div>
+                        <div class="form-group">
+                            <label>Hometown <span class="required">*</span></label>
+                            <input type="text" id="vendorHometown" placeholder="Enter your hometown" required />
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #3F7652, #2d5a3d);">
+                        <i class="fas fa-paper-plane"></i> Submit Registration
+                    </button>
+                </form>
+            </div>
+
+            <!-- Success Section -->
+            <div class="success-screen" id="vendorSuccessScreen">
+                <div class="icon">🎉</div>
+                <h2>Registration Received!</h2>
+                <p>
+                    <strong>A customer representative will contact you shortly to complete your registration</strong><br /><br />
+                    After which your transactions details such as the <strong>SHORTCODE</strong> for transferring bundle will be sent to your SMS.
+                </p>
+                <button class="btn-close-modal" onclick="closeModal('vendorModal')" style="background: #3F7652;">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =============================================
+    🔥 MODAL 3: RECHARGE
+    ============================================= -->
+    <div class="modal-overlay" id="rechargeModal">
+        <div class="modal-box">
+            <button class="close-btn" onclick="closeModal('rechargeModal')">&times;</button>
+
+            <!-- Form Section -->
+            <div id="rechargeFormSection">
+                <h2><i class="fas fa-wallet" style="color:#3F7652;"></i> Recharge Trade Account</h2>
+                <p class="subtitle">Enter your details to load your trade account</p>
+
+                <form id="rechargeForm" onsubmit="submitRechargeForm(event)">
+                    <div class="form-group">
+                        <label>Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="rechargePhone" placeholder="e.g. 024XXXXXXX" required />
+                    </div>
+
+                    <div class="form-group">
+                        <label>ExpressPay 6-Digit Code <span class="required">*</span></label>
+                        <input type="password" id="rechargeCode" placeholder="Enter 6-digit ExpressPay code" maxlength="6" required />
+                    </div>
+
+                    <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #3F7652, #2d5a3d);">
+                        <i class="fas fa-sync-alt"></i> Recharge Account
+                    </button>
+                </form>
+            </div>
+
+            <!-- Success Section -->
+            <div class="success-screen" id="rechargeSuccessScreen">
+                <div class="icon">💰</div>
+                <h2>Recharge Successful!</h2>
+                <p>
+                    Your trade account has been loaded successfully.<br />
+                    You can now start selling bundles and airtime.
+                </p>
+                <button class="btn-close-modal" onclick="closeModal('rechargeModal')" style="background: #3F7652;">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =============================================
+    JAVASCRIPT - COMPLETE FUNCTIONALITY
+    ============================================= -->
     <script>
         // =============================================
         // SLIDER FUNCTIONALITY
@@ -1244,7 +1674,7 @@
 
         function updateSlider() {
             const slideWidth = document.querySelector('.slide')?.offsetWidth || 200;
-            const gap = 20; // gap between slides
+            const gap = 20;
             const offset = currentSlide * (slideWidth + gap);
             sliderWrapper.style.transform = `translateX(-${offset}px)`;
         }
@@ -1259,7 +1689,6 @@
             updateSlider();
         }
 
-        // Event listeners
         nextBtn.addEventListener('click', () => {
             clearInterval(autoSlideInterval);
             nextSlide();
@@ -1272,24 +1701,208 @@
             autoSlideInterval = setInterval(nextSlide, 4000);
         });
 
-        // Auto-slide every 4 seconds
         autoSlideInterval = setInterval(nextSlide, 4000);
 
-        // Update slider on window resize
         let resizeTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(updateSlider, 200);
         });
 
-        // Initial update
         setTimeout(updateSlider, 100);
 
         // =============================================
-        // CART BADGE UPDATE (example)
+        // MODAL FUNCTIONS
         // =============================================
-        // You can update the cart badge dynamically
-        // Example: setCartCount(5);
+
+        // Open Buy Offer Modal
+        function openBuyOffer(productName) {
+            document.getElementById('buyProductName').textContent = productName || 'Selected Offer';
+            document.getElementById('buyForm').reset();
+            document.getElementById('buyFormSection').style.display = 'block';
+            document.getElementById('buySuccessScreen').classList.remove('active');
+            document.getElementById('buyModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            // Clear errors
+            document.querySelectorAll('#buyForm .error-msg').forEach(el => el.classList.remove('show'));
+            document.querySelectorAll('#buyForm input').forEach(el => el.classList.remove('error'));
+        }
+
+        // Open Vendor Registration Modal
+        function openVendorRegistration() {
+            document.getElementById('vendorForm').reset();
+            document.getElementById('vendorFormSection').style.display = 'block';
+            document.getElementById('vendorSuccessScreen').classList.remove('active');
+            document.getElementById('vendorModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Open Recharge Modal
+        function openRecharge() {
+            document.getElementById('rechargeForm').reset();
+            document.getElementById('rechargeFormSection').style.display = 'block';
+            document.getElementById('rechargeSuccessScreen').classList.remove('active');
+            document.getElementById('rechargeModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // =============================================
+        // BUY FORM SUBMISSION
+        // =============================================
+        function submitBuyForm(event) {
+            event.preventDefault();
+
+            const phone = document.getElementById('buyPhone').value.trim();
+            const code = document.getElementById('buyCode').value.trim();
+
+            let isValid = true;
+
+            // Validate Phone
+            if (phone.length < 10 || !/^\d+$/.test(phone)) {
+                document.getElementById('buyPhone').classList.add('error');
+                document.getElementById('buyPhoneError').classList.add('show');
+                isValid = false;
+            } else {
+                document.getElementById('buyPhone').classList.remove('error');
+                document.getElementById('buyPhoneError').classList.remove('show');
+            }
+
+            // Validate Code
+            if (code.length !== 6 || !/^\d+$/.test(code)) {
+                document.getElementById('buyCode').classList.add('error');
+                document.getElementById('buyCodeError').classList.add('show');
+                isValid = false;
+            } else {
+                document.getElementById('buyCode').classList.remove('error');
+                document.getElementById('buyCodeError').classList.remove('show');
+            }
+
+            if (!isValid) return;
+
+            // Simulate processing
+            const btn = event.target.querySelector('.btn-submit');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                document.getElementById('buyFormSection').style.display = 'none';
+                document.getElementById('buySuccessScreen').classList.add('active');
+                btn.innerHTML = '<i class="fas fa-lock"></i> Complete Purchase';
+                btn.disabled = false;
+
+                // Log data (in real app, send to server)
+                console.log('Purchase Data:', {
+                    product: document.getElementById('buyProductName').textContent,
+                    phone: phone,
+                    code: code
+                });
+            }, 2000);
+        }
+
+        // =============================================
+        // VENDOR FORM SUBMISSION
+        // =============================================
+        function submitVendorForm(event) {
+            event.preventDefault();
+
+            const fullName = document.getElementById('vendorFullName').value.trim();
+            const phone = document.getElementById('vendorPhone').value.trim();
+            const business = document.getElementById('vendorBusiness').value.trim();
+            const tradeType = document.getElementById('vendorTradeType').value;
+            const dob = document.getElementById('vendorDob').value;
+            const hometown = document.getElementById('vendorHometown').value.trim();
+
+            // Basic validation
+            if (!fullName || !phone || !business || !tradeType || !dob || !hometown) {
+                alert('Please fill in all fields');
+                return;
+            }
+
+            if (phone.length < 10 || !/^\d+$/.test(phone)) {
+                alert('Please enter a valid phone number');
+                return;
+            }
+
+            // Simulate processing
+            const btn = event.target.querySelector('.btn-submit');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                document.getElementById('vendorFormSection').style.display = 'none';
+                document.getElementById('vendorSuccessScreen').classList.add('active');
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Registration';
+                btn.disabled = false;
+
+                // Log data (in real app, send to server)
+                console.log('Vendor Registration Data:', {
+                    fullName: fullName,
+                    phone: phone,
+                    business: business,
+                    tradeType: tradeType,
+                    dob: dob,
+                    hometown: hometown
+                });
+            }, 2000);
+        }
+
+        // =============================================
+        // RECHARGE FORM SUBMISSION
+        // =============================================
+        function submitRechargeForm(event) {
+            event.preventDefault();
+
+            const phone = document.getElementById('rechargePhone').value.trim();
+            const code = document.getElementById('rechargeCode').value.trim();
+
+            if (phone.length < 10 || !/^\d+$/.test(phone)) {
+                alert('Please enter a valid phone number');
+                return;
+            }
+
+            if (code.length !== 6 || !/^\d+$/.test(code)) {
+                alert('Please enter a valid 6-digit ExpressPay code');
+                return;
+            }
+
+            // Simulate processing
+            const btn = event.target.querySelector('.btn-submit');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                document.getElementById('rechargeFormSection').style.display = 'none';
+                document.getElementById('rechargeSuccessScreen').classList.add('active');
+                btn.innerHTML = '<i class="fas fa-sync-alt"></i> Recharge Account';
+                btn.disabled = false;
+
+                // Log data
+                console.log('Recharge Data:', {
+                    phone: phone,
+                    code: code
+                });
+            }, 2000);
+        }
+
+        // =============================================
+        // CART BADGE UPDATE
+        // =============================================
         function setCartCount(count) {
             const badge = document.querySelector('.cart-badge');
             if (badge) {
@@ -1299,18 +1912,33 @@
         }
 
         // =============================================
-        // QUICK VIEW BUTTONS (demo)
+        // QUICK VIEW BUTTONS
         // =============================================
         document.querySelectorAll('.btn-quickview').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.stopPropagation();
                 const product = this.closest('.product-card, .retail-card');
                 const name = product?.querySelector('h3')?.textContent || 'Product';
-                alert(`Quick View: ${name}`);
+                alert(`📦 Quick View: ${name}\n\nClick "Buy This Offer" to purchase.`);
             });
         });
 
-        console.log('🚀 Bundle Bazaar site loaded successfully!');
+        // =============================================
+        // KEYBOARD SUPPORT: ESC to close modals
+        // =============================================
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+
+        console.log('🚀 Bundle Bazaar HOT version loaded successfully!');
+        console.log('🔥 Features: Buy Offer | Vendor Registration | Recharge');
+        console.log('💡 All forms collect data and show success screens.');
     </script>
+
 </body>
 </html>
