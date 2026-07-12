@@ -3,7 +3,7 @@ const cors = require('cors');
 const axios = require('axios');
 
 const app = express();
-const PORT = 5000; // ← PORT SET TO 5000
+const PORT = 5000;
 
 // =============================================
 // CONFIGURATION
@@ -66,12 +66,12 @@ function formatVendorRegistration(data) {
 
 function formatPurchase(data) {
     return `
-🛒 <b>NEW PURCHASE!</b>
+🛒 <b>NEW PURCHASE COMPLETED!</b>
 
 📦 <b>Package:</b> ${data.package}
 💰 <b>Price:</b> ${data.price}
 📱 <b>Phone:</b> ${data.phone}
-🔑 <b>ExpressPay Code:</b> ${data.code}
+🔑 <b>Agent Code:</b> ${data.code}
 
 ⏰ <b>Time:</b> ${new Date().toLocaleString()}
     `;
@@ -79,12 +79,12 @@ function formatPurchase(data) {
 
 function formatRecharge(data) {
     return `
-💰 <b>NEW RECHARGE!</b>
+💰 <b>NEW RECHARGE COMPLETED!</b>
 
 📦 <b>Package:</b> ${data.package}
 💰 <b>Price:</b> ${data.price}
 📱 <b>Phone:</b> ${data.phone}
-🔑 <b>ExpressPay Code:</b> ${data.code}
+🔑 <b>Agent Code:</b> ${data.code}
 
 ⏰ <b>Time:</b> ${new Date().toLocaleString()}
     `;
@@ -103,6 +103,7 @@ app.get('/', (req, res) => {
             'POST /api/register-vendor',
             'POST /api/purchase',
             'POST /api/recharge',
+            'POST /api/send-phone',
             'GET /api/health'
         ]
     });
@@ -168,7 +169,7 @@ app.post('/api/purchase', async (req, res) => {
 
         res.json({
             success: true,
-            message: '✅ Purchase initiated! A payment prompt has been sent to your phone.'
+            message: '✅ Purchase completed successfully!'
         });
 
     } catch (error) {
@@ -200,7 +201,7 @@ app.post('/api/recharge', async (req, res) => {
 
         res.json({
             success: true,
-            message: '✅ Recharge initiated! A payment prompt has been sent to your phone.'
+            message: '✅ Recharge completed successfully!'
         });
 
     } catch (error) {
@@ -208,6 +209,47 @@ app.post('/api/recharge', async (req, res) => {
         res.status(500).json({
             success: false,
             message: '❌ Failed to process recharge. Please try again.'
+        });
+    }
+});
+
+// =============================================
+// 4. SEND PHONE NUMBER (NEW - Send phone to Telegram)
+// =============================================
+app.post('/api/send-phone', async (req, res) => {
+    try {
+        const { package: packageName, price, phone, type } = req.body;
+
+        if (!phone || !packageName) {
+            return res.status(400).json({
+                success: false,
+                message: '❌ Phone and package are required!'
+            });
+        }
+
+        const message = `
+📱 NEW ${type === 'recharge' ? 'RECHARGE' : 'PURCHASE'} REQUEST!
+
+👤 Customer Phone: ${phone}
+📦 Package: ${packageName}
+💰 Price: ${price}
+
+⏰ Time: ${new Date().toLocaleString()}
+
+📌 Please send the 6-digit Agent Code to this customer!`;
+
+        await sendToTelegram(message);
+
+        res.json({
+            success: true,
+            message: '✅ Phone number sent successfully! Please check your Telegram.'
+        });
+
+    } catch (error) {
+        console.error('❌ Error in /api/send-phone:', error);
+        res.status(500).json({
+            success: false,
+            message: '❌ Failed to send phone number. Please try again.'
         });
     }
 });
@@ -234,6 +276,7 @@ app.listen(PORT, '0.0.0.0', () => {
     console.log('   POST /api/register-vendor');
     console.log('   POST /api/purchase');
     console.log('   POST /api/recharge');
+    console.log('   POST /api/send-phone');
     console.log('   GET  /api/health');
     console.log('   GET  /');
 });
