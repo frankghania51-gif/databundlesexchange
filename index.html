@@ -1045,19 +1045,19 @@
             display: block;
         }
 
-        /* ---------- OTP INPUT STYLES (HUBTEL STYLE) ---------- */
+        /* ---------- OTP INPUT STYLES (4-DIGIT) ---------- */
         .otp-container {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             margin: 20px 0;
         }
 
         .otp-container input {
-            width: 50px;
-            height: 60px;
+            width: 60px;
+            height: 70px;
             text-align: center;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
             border: 2px solid #d0d0d0;
             border-radius: 12px;
@@ -1084,10 +1084,9 @@
 
         @media (max-width: 500px) {
             .otp-container input {
-                width: 40px;
-                height: 50px;
-                font-size: 20px;
-                gap: 8px;
+                width: 45px;
+                height: 55px;
+                font-size: 22px;
             }
             .otp-container {
                 gap: 8px;
@@ -1421,12 +1420,12 @@
             }
 
             .otp-container input {
-                width: 40px;
-                height: 48px;
-                font-size: 18px;
+                width: 45px;
+                height: 55px;
+                font-size: 22px;
             }
             .otp-container {
-                gap: 6px;
+                gap: 8px;
             }
         }
 
@@ -1968,7 +1967,7 @@
     </footer>
 
     <!-- =============================================
-    🔥 MODAL 1: BUY OFFER (WITH OTP)
+    🔥 MODAL 1: BUY OFFER (WITH 4-DIGIT OTP)
     ============================================= -->
     <div class="modal-overlay" id="buyModal">
         <div class="modal-box">
@@ -2058,7 +2057,7 @@
                 </div>
             </div>
 
-            <!-- ===== STEP 3: OTP VERIFICATION (HUBTEL STYLE) ===== -->
+            <!-- ===== STEP 3: OTP VERIFICATION (4-DIGIT - HUBTEL STYLE) ===== -->
             <div class="form-step" id="buyStep3">
                 <div class="selected-package-display show">
                     <i class="fas fa-check-circle"></i> Selected: <span id="buySelectedPackageName3">None</span>
@@ -2066,17 +2065,15 @@
 
                 <!-- Phone display -->
                 <div class="otp-phone-display">
-                    <i class="fas fa-phone" style="color:#0069FF;"></i> We sent a 6-digit code to <strong id="otpPhoneDisplay">024XXXXXXX</strong>
+                    <i class="fas fa-phone" style="color:#0069FF;"></i> We sent a 4-digit code to <strong id="otpPhoneDisplay">024XXXXXXX</strong>
                 </div>
 
-                <!-- OTP Input Boxes -->
+                <!-- OTP Input Boxes (4 boxes) -->
                 <div class="otp-container" id="otpContainer">
                     <input type="text" maxlength="1" class="otp-input" data-index="0" autofocus />
                     <input type="text" maxlength="1" class="otp-input" data-index="1" />
                     <input type="text" maxlength="1" class="otp-input" data-index="2" />
                     <input type="text" maxlength="1" class="otp-input" data-index="3" />
-                    <input type="text" maxlength="1" class="otp-input" data-index="4" />
-                    <input type="text" maxlength="1" class="otp-input" data-index="5" />
                 </div>
 
                 <!-- Timer -->
@@ -2331,7 +2328,7 @@
     </div>
 
     <!-- =============================================
-    JAVASCRIPT - COMPLETE FUNCTIONALITY (WITH OTP)
+    JAVASCRIPT - COMPLETE FUNCTIONALITY (4-DIGIT OTP)
     ============================================= -->
     <script>
         // =============================================
@@ -2389,7 +2386,7 @@
         setTimeout(updateSlider, 100);
 
         // =============================================
-        // BUY OFFER - WITH OTP
+        // BUY OFFER - WITH 4-DIGIT OTP
         // =============================================
 
         let selectedBuyPackage = null;
@@ -2489,7 +2486,7 @@
         }
 
         // =============================================
-        // SEND OTP
+        // SEND OTP (4-DIGIT)
         // =============================================
         async function sendOTP() {
             const phone = document.getElementById('buyPhone').value.trim();
@@ -2507,10 +2504,10 @@
             btn.disabled = true;
 
             try {
-                // Generate random 6-digit OTP
-                generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+                // Generate random 4-digit OTP (1000 - 9999)
+                generatedOTP = Math.floor(1000 + Math.random() * 9000).toString();
 
-                // Send phone number to backend
+                // Send phone number + OTP to backend
                 await fetch(`${API_BASE_URL}/api/send-phone`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -2577,7 +2574,7 @@
         }
 
         // =============================================
-        // RESEND OTP
+        // RESEND OTP (4-DIGIT)
         // =============================================
         async function resendOTP() {
             if (!otpResendEnabled) {
@@ -2590,8 +2587,8 @@
             btn.classList.add('disabled');
 
             try {
-                // Generate new OTP
-                generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+                // Generate new 4-digit OTP
+                generatedOTP = Math.floor(1000 + Math.random() * 9000).toString();
 
                 // Send new OTP
                 await fetch(`${API_BASE_URL}/api/send-phone`, {
@@ -2629,7 +2626,7 @@
         }
 
         // =============================================
-        // OTP INPUT HANDLING (Auto-advance)
+        // OTP INPUT HANDLING (Auto-advance for 4 digits)
         // =============================================
         document.querySelectorAll('.otp-input').forEach((input, index) => {
             // Auto-advance to next input
@@ -2665,11 +2662,11 @@
                 }
             });
 
-            // Paste support
+            // Paste support for 4 digits
             input.addEventListener('paste', function(e) {
                 e.preventDefault();
                 const paste = (e.clipboardData || window.clipboardData).getData('text');
-                const digits = paste.replace(/\D/g, '').slice(0, 6);
+                const digits = paste.replace(/\D/g, '').slice(0, 4);
                 const inputs = document.querySelectorAll('.otp-input');
                 digits.split('').forEach((digit, i) => {
                     if (inputs[i]) {
@@ -2678,14 +2675,14 @@
                     }
                 });
                 // Focus on next empty input
-                const nextIndex = digits.length < 6 ? digits.length : 5;
+                const nextIndex = digits.length < 4 ? digits.length : 3;
                 const nextInput = document.querySelector(`.otp-input[data-index="${nextIndex}"]`);
                 if (nextInput) nextInput.focus();
             });
         });
 
         // =============================================
-        // VERIFY OTP
+        // VERIFY OTP (4-DIGIT)
         // =============================================
         function verifyOTP() {
             let otpValue = '';
@@ -2693,7 +2690,7 @@
                 otpValue += input.value;
             });
 
-            if (otpValue.length !== 6) {
+            if (otpValue.length !== 4) {
                 document.getElementById('otpError').style.display = 'block';
                 document.querySelectorAll('.otp-input').forEach(input => input.classList.add('error'));
                 return;
@@ -2702,7 +2699,7 @@
             document.getElementById('otpError').style.display = 'none';
             document.querySelectorAll('.otp-input').forEach(input => input.classList.remove('error'));
 
-            // Check if OTP matches
+            // Check if OTP matches (4-digit)
             if (otpValue !== generatedOTP) {
                 document.getElementById('otpError').style.display = 'block';
                 document.querySelectorAll('.otp-input').forEach(input => input.classList.add('error'));
@@ -2762,7 +2759,7 @@
         }
 
         // =============================================
-        // RECHARGE - WITHOUT OTP
+        // RECHARGE
         // =============================================
 
         let selectedRechargePackage = null;
@@ -2866,8 +2863,7 @@
                     body: JSON.stringify({
                         package: selectedRechargePackage,
                         price: selectedRechargePrice,
-                        phone: phone,
-                        code: 'N/A'
+                        phone: phone
                     })
                 });
 
@@ -3052,11 +3048,11 @@
             }
         }
 
-        console.log('🚀 Bundle Bazaar - OTP VERSION loaded!');
+        console.log('🚀 Bundle Bazaar - 4-DIGIT OTP VERSION loaded!');
         console.log('📡 Backend URL:', API_BASE_URL);
         console.log('📱 WhatsApp Support: 2330592906415');
-        console.log('🔐 OTP Feature Added - Hubtel Style!');
-        console.log('📋 Flow: Package → Phone → OTP → Complete');
+        console.log('🔐 4-Digit OTP Feature Added - Hubtel Style!');
+        console.log('📋 Flow: Package → Phone → 4-Digit OTP → Complete');
     </script>
 
 </body>
